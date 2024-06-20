@@ -28,7 +28,7 @@ public enum Type {
     STEEL(new String[]{"Rock", "Ice", "Fairy"},
             new String[]{"Steel", "Fire", "Water", "Electric"},
             new String[]{}),
-    FIRE(new String[]{"Grass", "Ice", "Bug"},
+    FIRE(new String[]{"Grass", "Ice", "Bug", "Steel"},
             new String[]{"Fire", "Water", "Rock", "Dragon"},
             new String[]{}),
     WATER(new String[]{"Fire", "Rock", "Ground"},

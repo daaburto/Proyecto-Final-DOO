@@ -394,7 +394,7 @@ public enum Species {
     DEOXYS_NORMAL(Generation3.DEOXYS_NORMAL),
     DEOXYS_SPEED(Generation3.DEOXYS_SPEED),
     DEOXYS_ATTACK(Generation3.DEOXYS_ATTACK),
-    DEOXYS_DEFENSE(Generation3.DEOXYS_DEFENSE);/*
+    DEOXYS_DEFENSE(Generation3.DEOXYS_DEFENSE),
     TURTWIG(Generation4.TURTWIG),
     GROTLE(Generation4.GROTLE),
     TORTERRA(Generation4.TORTERRA),
@@ -672,7 +672,7 @@ public enum Species {
     KELDEO_RESOLUTE(Generation5.KELDEO_RESOLUTE),
     MELOETTA_ARIA(Generation5.MELOETTA_ARIA),
     MELOETTA_PIROUETTE(Generation5.MELOETTA_PIROUETTE),
-    GENESECT(Generation5.GENESECT);*/
+    GENESECT(Generation5.GENESECT);
 
 
 
@@ -703,7 +703,7 @@ public enum Species {
         IMG = g.getImg();
     }
 
-    /*Species(Generation4 g) {
+    Species(Generation4 g) {
         EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
@@ -719,7 +719,7 @@ public enum Species {
         NAT_DEX_NUMBER = g.getDexNumber();
         TYPE = g.getType();
         IMG = g.getImg();
-    }*/
+    }
 
     private final Species[] EVOLUTION;
     private final int HP;
