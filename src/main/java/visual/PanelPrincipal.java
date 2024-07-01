@@ -54,6 +54,7 @@ public class PanelPrincipal extends JFrame implements ActionListener{
     public void buildHabitat(PanelHabitat panelHabitat, int place){
         zonaHabitat[place].remove(buildButton[place]);
         zonaHabitat[place].add(panelHabitat);
+
     }
 
     public void setMediator(Mediator m){
