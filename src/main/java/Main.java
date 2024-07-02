@@ -1,5 +1,5 @@
-package visual;
-
+import org.pokemon.*;
+import visual.*;
 import java.awt.*;
 
 public class Main {

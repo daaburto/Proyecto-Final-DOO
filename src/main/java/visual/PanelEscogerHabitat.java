@@ -12,7 +12,7 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
     private typeLabel[] typeLabels = new typeLabel[9];
     private JPanel panelOpciones;
     private JButton[] nextPageButton = new JButton[2];
-    PanelEscogerHabitat(){
+    public PanelEscogerHabitat(){
         super("Escoger habitat");
 
         // Crear LayeredPane para las capas

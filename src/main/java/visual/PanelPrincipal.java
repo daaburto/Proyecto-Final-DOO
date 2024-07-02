@@ -9,7 +9,7 @@ public class PanelPrincipal extends JFrame implements ActionListener{
     private Mediator mediator;
     JButton[] buildButton = new JButton[9];
     JPanel[] zonaHabitat = new JPanel[9];
-    PanelPrincipal(){
+    public PanelPrincipal(){
         super("Panel Principal");
         int width = 1280;
         int height = 720;
