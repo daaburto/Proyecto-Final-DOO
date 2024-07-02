@@ -9,6 +9,7 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
     private Mediator mediator;
     private JButton backButton;
     public habitatButton[] habitatButtons = new habitatButton[6];
+    private typeLabel[] typeLabels = new typeLabel[9];
     private JPanel panelOpciones;
     private JButton[] nextPageButton = new JButton[2];
     PanelEscogerHabitat(){
@@ -29,32 +30,40 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
         panelOpciones.setBounds(50,40,1180,620);
         panelOpciones.setLayout(new GridLayout(2,3));
 
-        // Crear Botones de selección de habitats
+        // Crear Botones de selección de habitats & Crear label con tipo del habitat
         for (int i = 0; i < 6; i++){
+            // Habitat
             habitatButtons[i] = new habitatButton(i);
-            //habitatButtons[i].setContentAreaFilled(false);
-            //habitatButtons[i].setBorderPainted(false);
-            //habitatButtons[i].setFocusPainted(false);
             habitatButtons[i].setId(i);
             habitatButtons[i].setIcon(i);
             habitatButtons[i].addActionListener(this);
             habitatButtons[i].setPreferredSize(new Dimension(288,162));
+
+            // Label
+            typeLabels[i] = new typeLabel(i);
+            typeLabels[i].setId(i);
+            typeLabels[i].setIcon(i);
+            typeLabels[i].setPreferredSize(new Dimension(200,40));
+
             int index = i;
             panelOpciones.add(new JPanel(null){
                 {
                     if (index == 0 || index == 1 || index == 2) {
                         habitatButtons[index].setBounds(50, 100, 288, 162);
+                        typeLabels[index].setBounds(100,270,200,40);
                     }else{
                         habitatButtons[index].setBounds(50, 50, 288, 162);
+                        typeLabels[index].setBounds(100,220,200,40);
                     }
                     setOpaque(false);
 
                     add(habitatButtons[index]);
+                    add(typeLabels[index]);
                 }
             });
         }
 
-        // Next & Previos Page Button
+        // Next & Previous Page Button
         for (int i = 0; i < 2; i++){
             nextPageButton[i] = new JButton();
             nextPageButton[i].setContentAreaFilled(false);
@@ -100,6 +109,8 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
         for (int i = 0; i < 6; i++) {
             habitatButtons[i].setId(6 * (destination_page-1) + i);
             habitatButtons[i].setIcon(6 * (destination_page-1) + i);
+            typeLabels[i].setId(6 * (destination_page-1) + i);
+            typeLabels[i].setIcon(6 * (destination_page-1) + i);
 
             if (destination_page == 1) {
                 nextPageButton[0].setVisible(true);
@@ -144,11 +155,9 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
 class habitatButton extends JButton implements ActionListener{
     private Mediator mediator;
     private int id;
-    private JLabel idlabel;
+
     habitatButton(int id){
         this.id = id;
-        idlabel = new JLabel("nm " + id);
-        this.add(idlabel);
     }
 
     public int getId(){
@@ -156,7 +165,6 @@ class habitatButton extends JButton implements ActionListener{
     }
     public void setId(int id){
         this.id = id;
-        idlabel.setText("nm " + id);
     }
     public void setIcon(int id){
         switch (id){
@@ -228,6 +236,83 @@ class habitatButton extends JButton implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this){
             mediator.notify(this, "habitatSelect = " + id);
+        }
+    }
+}
+
+class typeLabel extends JLabel{
+    private int id;
+    typeLabel(int id){
+        this.id = id;
+    }
+
+    public int getId(){
+        return id;
+
+    }
+    public void setId(int i){
+        this.id = i;
+    }
+
+    public void setIcon(int id){
+        switch (id){
+            case 0:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_normal.png"));
+                break;
+            case 1:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_lucha.png"));
+                break;
+            case 2:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_vuelo.png"));
+                break;
+            case 3:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_veneno.png"));
+                break;
+            case 4:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_tierra.png"));
+                break;
+            case 5:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_roca.png"));
+                break;
+            case 6:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_bicho.png"));
+                break;
+            case 7:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_fantasma.png"));
+                break;
+            case 8:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_acero.png"));
+                break;
+            case 9:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_fuego.png"));
+                break;
+            case 10:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_agua.png"));
+                break;
+            case 11:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_planta.png"));
+                break;
+            case 12:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_electrico.png"));
+                break;
+            case 13:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_psiquico.png"));
+                break;
+            case 14:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_hielo.png"));
+                break;
+            case 15:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_dragon.png"));
+                break;
+            case 16:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_siniestro.png"));
+                break;
+            case 17:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\tipos\\Tipo_hada.png"));
+                break;
+            default:
+                this.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\SeleccionHabitat.png"));
+                break;
         }
     }
 }
