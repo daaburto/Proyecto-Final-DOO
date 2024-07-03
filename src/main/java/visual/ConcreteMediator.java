@@ -71,6 +71,7 @@ public class ConcreteMediator implements Mediator{
                 panelEscogerHabitat.setLocation(panelPrincipal.getLocation());
                 System.setProperty("room", "PanelEscogerHabitat_1");
                 System.setProperty("habitatSelected", "7");
+                panelAddPokemon.rerrolPokemon();
                 panelEscogerHabitat.setVisible(true);
             }else if (event.equals("Room_Goto(PanelEscogerHabitat)[8]")){
                 panelPrincipal.setVisible(false);
@@ -149,6 +150,7 @@ public class ConcreteMediator implements Mediator{
                     panelPrincipal.setVisible(false);
                     panelAddPokemon.setLocation(panelPrincipal.getLocation());
                     System.setProperty("room", "PanelAddPokemon" + i);
+                    panelAddPokemon.rerrolPokemon();
                     System.setProperty("habitatSelected", ""+i);
                     panelAddPokemon.setVisible(true);
                 }else if (event.equals("Room_Goto(PanelCaja)")){
@@ -158,6 +160,9 @@ public class ConcreteMediator implements Mediator{
                     System.setProperty("room", "PanelCaja" + i);
                     System.setProperty("habitatSelected", ""+i);
                     panelCaja.setVisible(true);
+                }else if (event.equals("destroyHabitat")){
+                    panelHabitats[i] = null;
+                    panelPrincipal.removeHabitat(i);
                 }
             }
         }
@@ -169,7 +174,6 @@ public class ConcreteMediator implements Mediator{
                 panelAddPokemon.setVisible(false);
                 panelPrincipal.setLocation(panelAddPokemon.getLocation());
                 System.setProperty("room", "PanelPrincipal");
-                panelAddPokemon.rerrolPokemon();
                 panelPrincipal.setVisible(true);
             }else if (event.equals("reroll")){
                 panelAddPokemon.rerrolPokemon();
@@ -201,6 +205,7 @@ public class ConcreteMediator implements Mediator{
                 panelAddPokemon.setVisible(false);
                 panelPrincipal.setLocation(panelAddPokemon.getLocation());
                 System.setProperty("room", "PanelPrincipal");
+                panelAddPokemon.rerrolPokemon();
                 panelPrincipal.setVisible(true);
             }
         }

@@ -13,7 +13,7 @@ import java.util.Random;
 public class PanelAddPokemon extends JFrame implements ActionListener {
     private Mediator mediator;
     private JPanel panelOpciones;
-    public pokemonButton[] pokemonButton = new pokemonButton[12];
+    private pokemonButton[] pokemonButton = new pokemonButton[12];
     private JButton backButton;
     private JButton rerollButton;
 
@@ -33,7 +33,7 @@ public class PanelAddPokemon extends JFrame implements ActionListener {
                 g.drawImage(panelOpciones_img.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
-        panelOpciones.setBounds(50, 40, 1180, 620);//620
+        panelOpciones.setBounds(50, 40, 1180, 620);
         panelOpciones.setLayout(new GridLayout(3, 4));
 
         // Crear seleccion de pokemon
@@ -153,18 +153,3 @@ public class PanelAddPokemon extends JFrame implements ActionListener {
     }
 }
 
-class pokemonButton extends JButton{
-    private Species specie;
-    pokemonButton(Species s){
-        this.specie = s;
-    }
-
-    public Species getSpecie(){
-        return specie;
-    }
-
-    public void setSpecie(Species s){
-        this.specie = s;
-    }
-
-}
