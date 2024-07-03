@@ -50,7 +50,7 @@ public class PokedexGUI extends JFrame {
 
         baseHpLabel = new JLabel("HP base: " + pokemon.getSpecies().getHP());
         hpLabel = new JLabel("HP base: " + pokemon.getSpecies().getHP());
-        baseHpLabel.setText("HP: " + pokemon.calculateHp());
+        baseHpLabel.setText("HP: " + pokemon.getHp());
         infoPanel.add(numberLabel);
         infoPanel.add(nameLabel);
         infoPanel.add(levelLabel);
@@ -105,7 +105,7 @@ public class PokedexGUI extends JFrame {
         weaknessLabel.setText(weaknessText.toString());
 
         baseHpLabel.setText("HP base: " + randomPokemon.getSpecies().getHP());
-        hpLabel.setText("HP: " + randomPokemon.calculateHp());
+        hpLabel.setText("HP: " + randomPokemon.getHp());
 
         ImageIcon imageIcon = randomPokemon.getSpecies().getImg();
         imageLabel.setIcon(imageIcon);

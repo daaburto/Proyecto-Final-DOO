@@ -130,7 +130,7 @@ public enum Generation4 {
         NAT_DEX_NUMBER = dexNumber;
         NAME = name;
         TYPE = type;
-        IMG = new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(400, 400, Image.SCALE_SMOOTH));
+        IMG = new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH));
 
     }
 

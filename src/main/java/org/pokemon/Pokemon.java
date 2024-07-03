@@ -1,39 +1,32 @@
 package org.pokemon;
 
+import java.util.Timer;
+import java.util.TimerTask;
 public class Pokemon {
     private Species species;
-    private boolean[] status;
-    private byte level;
-    private int totalExpForNextLevel, totalExp;
+    private int level, hp;
+    private Timer timer;
 
     public Pokemon(Species s) {
-        this(s, 5);
+        this(s, 30);
     }
 
-
-    public Pokemon(Species species, int level) {
-        //Set the Species of the Pokemon (ie. Charizard, Squirtle, etc...)
+    public Pokemon(Species species, int lvl) {
         this.species = species;
-        status = new boolean[]{false, false, false, false, false, false};
-        //calculateStat(Stat.HP);
-        this.level = 5;
+        this.level = lvl;
+        calculateHp();
+        timer = new Timer(true); // Daemon thread
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                reduceHp(1);
+            }
+        }, 0, 1000);
     }
 
-    public Pokemon(Species evolveTo, Pokemon p) {
-        species = evolveTo;
-        level = p.level;
-        status = new boolean[]{p.status[0], p.status[1], p.status[2], p.status[3], p.status[4], p.status[5]};
-        //calculateStat(Stat.HP);
-        totalExp = p.totalExp;
-    }
-
-    public boolean[] getStatus() {
-        return status;
-    }
-
-    int calculateHp() {
+    public void calculateHp() {
         https://www.wikidex.net/wiki/Características#Cálculo_de_características
-        return (((28 + (2 * species.getHP()) + (48 / 4) + 100) * level) / 100) + 10;
+        hp = (((28 + (2 * species.getHP()) + (48 / 4) + 100) * level) / 100) + 10;
     }
 
     public String getName() {
@@ -45,22 +38,41 @@ public class Pokemon {
     public int getLevel() {
         return level;
     }
-    public void addExp(int newExp) {
-        totalExp += newExp;
+    public void levelUp() {
+        level++;
+        calculateHp();
     }
-    public String levelUp() {
-        String str = "";
-        //If we have enough exp
-        if (totalExp >= totalExpForNextLevel) {
-            //level up and set remaining exp
-            level++;
-            //currentStats(Stat.HP);
-            //revive();
-        }
-        return "Too bad, " + species.getName() + " didn't level up. They need " + (totalExpForNextLevel - totalExp) + " more exp to reach level " + (level + 1) + ".";
+    public void levelUp(int lvl){
+        level += lvl;
+        calculateHp();
     }
-
     public Species getSpecies(){
         return species;
+    }
+
+    public int getHp() {
+        return hp;
+    }
+    public void reduceHp(int amount) {
+        hp = Math.max(hp - amount, 0); //  HP > 0
+    }
+
+    public static void main(String[] args) {
+        Pokemon pikachu = new Pokemon(Species.PIKACHU);
+        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
+        pikachu.levelUp();
+        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
+        pikachu.levelUp(5);
+        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
+
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
+        pikachu.calculateHp();
+        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
     }
 }
