@@ -127,9 +127,6 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
 
     public void setMediator(Mediator m){
         mediator = m;
-        for (int i = 0; i < 6; i++){
-            this.habitatButtons[i].setMediator(m);
-        }
     }
 
     @Override
@@ -152,8 +149,7 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
     }
 }
 
-class habitatButton extends JButton implements ActionListener{
-    private Mediator mediator;
+class habitatButton extends JButton{
     private int id;
 
     habitatButton(int id){
@@ -228,16 +224,6 @@ class habitatButton extends JButton implements ActionListener{
         }
     }
 
-    public void setMediator(Mediator m){
-        mediator = m;
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this){
-            mediator.notify(this, "habitatSelect = " + id);
-        }
-    }
 }
 
 class typeLabel extends JLabel{

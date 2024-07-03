@@ -29,7 +29,6 @@ public class PanelPrincipal extends JFrame implements ActionListener{
                     g.drawImage(zonaHabitatEmpty_img.getImage(),0,0,getWidth(),getHeight(),this);
                 }
             };
-            //zonaHabitat[i].setBackground((new Color(i*5,i*25,i*10)));
             zonaHabitat[i].setLayout(null);
 
             buildButton[i] = new JButton();
@@ -48,13 +47,13 @@ public class PanelPrincipal extends JFrame implements ActionListener{
         this.setSize(width,height);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
-        this.setVisible(true);
+        this.setVisible(false);
     }
 
     public void buildHabitat(PanelHabitat panelHabitat, int place){
         zonaHabitat[place].remove(buildButton[place]);
         zonaHabitat[place].add(panelHabitat);
-
+        panelHabitat.setMediator(mediator);
     }
 
     public void setMediator(Mediator m){

@@ -12,8 +12,15 @@ public class Main {
         // Crear Paneles y Mediator
         PanelPrincipal panelprincipal = new PanelPrincipal();
         PanelEscogerHabitat panelEscogerHabitat = new PanelEscogerHabitat();
-        ConcreteMediator mediator = new ConcreteMediator(panelprincipal, panelEscogerHabitat);
+        PanelAddPokemon panelAddPokemon = new PanelAddPokemon();
+        PanelCaja panelCaja = new PanelCaja();
+
+        ConcreteMediator mediator = new ConcreteMediator(panelprincipal, panelEscogerHabitat,panelAddPokemon, panelCaja);
+
         panelprincipal.setMediator(mediator);
         panelEscogerHabitat.setMediator(mediator);
+        panelAddPokemon.setMediator(mediator);
+        panelCaja.setMediator(mediator);
+        panelprincipal.setVisible(true);
     }
 }

@@ -6,14 +6,44 @@ import org.pokemon.Type;
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-public class PanelHabitat extends JButton {
+public class PanelHabitat extends JButton implements ActionListener {
     private Mediator mediator;
     private int type;
     private Habitat habitat;
+    private JButton addPokemonButton;
+    private JButton goToBoxButton;
+    private JButton destroyHabitatButton;
 
     public PanelHabitat(int t) {
         this.setBorder(new LineBorder(new Color(123, 123, 123), 5));
+
+        // Crear Botones
+        addPokemonButton = new JButton();
+        addPokemonButton.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\AddPokemonButton.png"));
+        addPokemonButton.setContentAreaFilled(false);
+        addPokemonButton.setBorderPainted(false);
+        addPokemonButton.setFocusPainted(false);
+        addPokemonButton.addActionListener(this);
+        addPokemonButton.setVisible(false);
+
+        goToBoxButton = new JButton();
+        goToBoxButton.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\BoxButton.png"));
+        goToBoxButton.setContentAreaFilled(false);
+        goToBoxButton.setBorderPainted(false);
+        goToBoxButton.setFocusPainted(false);
+        goToBoxButton.addActionListener(this);
+        goToBoxButton.setVisible(false);
+
+        destroyHabitatButton = new JButton();
+        destroyHabitatButton.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\RemoveButton.png"));
+        destroyHabitatButton.setContentAreaFilled(false);
+        destroyHabitatButton.setBorderPainted(false);
+        destroyHabitatButton.setFocusPainted(false);
+        destroyHabitatButton.addActionListener(this);
+        destroyHabitatButton.setVisible(false);
 
         // Cambiar imagen segun tipo
         this.type = t;
@@ -96,12 +126,42 @@ public class PanelHabitat extends JButton {
                 break;
         }
 
+        this.setLayout(null);
         this.setSize(426,230);
-        this.add(new JLabel("" + t));
+        addPokemonButton.setBounds(80,20,64,64);
+        goToBoxButton.setBounds(180,20,64,64);
+        destroyHabitatButton.setBounds(280,20,64,64);
+        this.add(addPokemonButton);
+        this.add(goToBoxButton);
+        this.add(destroyHabitatButton);
+        this.addActionListener(this);
         this.setVisible(true);
+    }
+
+    public void setButtonsVisible(boolean is_visible){
+        addPokemonButton.setVisible(is_visible);
+        goToBoxButton.setVisible(is_visible);
+        destroyHabitatButton.setVisible(is_visible);
     }
 
     public void setMediator(Mediator m){
         mediator = m;
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == this){
+            if(!addPokemonButton.isVisible()){
+                mediator.notify(this, "PanelHabitatShowButtons");
+            }else{
+                mediator.notify(this, "PanelHabitatHideButtons");
+            }
+        } else if (e.getSource() == addPokemonButton){
+            mediator.notify(this, "Room_Goto(PanelAddPokemon)");
+        }else if (e.getSource() == goToBoxButton){
+          mediator.notify(this, "Room_Goto(PanelCaja)");
+        }else if(e.getSource() == destroyHabitatButton){
+            mediator.notify(this, "destroyHabitat");
+        }
     }
 }
