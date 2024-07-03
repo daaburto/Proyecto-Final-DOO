@@ -117,7 +117,6 @@ public enum Generation2 {
         NAME = name;
         TYPE = type;
         IMG = new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH));
-
     }
 
     public String getDexNumber()
