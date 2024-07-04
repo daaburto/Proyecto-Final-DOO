@@ -82,13 +82,17 @@ public class Habitat {
                 Type[] pokemonTypes = pokemon.getType();
                 for (Type pokemonType : pokemonTypes) {
                     if (habitatType.isSuperEffectiveAgainst(pokemonType)) {
-                        System.out.println("El hábitat es supereficaz contra " + pokemon.getName() + " (" + pokemonType + ")");
+                        pokemon.cambiarEstado(0);
+                        System.out.println("El hábitat es supereficaz contra " + pokemon.getName() + " (" + pokemonType + ") (estado: " + pokemon.getState() + ")");
                     } else if (habitatType == pokemonType) {
-                        System.out.println("El hábitat es del mismo tipo que " + pokemon.getName() + " (" + pokemonType + ")");
+                        pokemon.cambiarEstado(2);
+                        System.out.println("El hábitat es del mismo tipo que " + pokemon.getName() + " (" + pokemonType + ") (estado: " + pokemon.getState() + ")");
                     } else if (pokemonType.isSuperEffectiveAgainst(habitatType)) {
-                        System.out.println(pokemon.getName() + " puede destruir este hábitat (" + pokemonType + ")");
+                        pokemon.cambiarEstado(3);
+                        System.out.println(pokemon.getName() + " puede destruir este hábitat (" + pokemonType + ") (estado: " + pokemon.getState() + ")");
                     } else {
-                        System.out.println("El hábitat es normal para " + pokemon.getName() + " (" + pokemonType + ")");
+                        pokemon.cambiarEstado(1);
+                        System.out.println("El hábitat es normal para " + pokemon.getName() + " (" + pokemonType + ") (estado: " + pokemon.getState() + ")");
                     }
                 }
             }
