@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
 public class PanelHabitat extends JButton implements ActionListener {
     private Mediator mediator;
     private int type;
-    private Habitat habitat;
+    public Habitat habitat;
     private JButton addPokemonButton;
     private JButton goToBoxButton;
     private JButton destroyHabitatButton;
@@ -143,7 +143,17 @@ public class PanelHabitat extends JButton implements ActionListener {
         goToBoxButton.setVisible(is_visible);
         destroyHabitatButton.setVisible(is_visible);
     }
-
+    public void setHabitatFull(boolean is_full){
+        if (is_full){
+            addPokemonButton.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\AddPokemonFullButton.png"));
+            this.repaint();
+            this.revalidate();
+        }else{
+            addPokemonButton.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\AddPokemonButton.png"));
+            this.repaint();
+            this.revalidate();
+        }
+    }
     public void setMediator(Mediator m){
         mediator = m;
     }

@@ -137,6 +137,11 @@ public class ConcreteMediator implements Mediator{
         for (int i = 0; i < 9; i++){
             if (sender == panelHabitats[i]){
                 if (event.equals("PanelHabitatShowButtons")){
+                    if (panelHabitats[i].habitat.caja[5] != null){
+                        panelHabitats[i].setHabitatFull(true);
+                    }else{
+                        panelHabitats[i].setHabitatFull(false);
+                    }
                     panelHabitats[i].setButtonsVisible(true);
                     for (int j = 0; j < 9; j++){
                         if (j != i && panelHabitats[j] != null){
@@ -145,6 +150,7 @@ public class ConcreteMediator implements Mediator{
                     }
                 }else if (event.equals("PanelHabitatHideButtons")){
                     panelHabitats[i].setButtonsVisible(false);
+
                 } else if (event.equals("Room_Goto(PanelAddPokemon)")){
                     panelHabitats[i].setButtonsVisible(false);
                     panelPrincipal.setVisible(false);
@@ -153,13 +159,25 @@ public class ConcreteMediator implements Mediator{
                     panelAddPokemon.rerrolPokemon();
                     System.setProperty("habitatSelected", ""+i);
                     panelAddPokemon.setVisible(true);
+
                 }else if (event.equals("Room_Goto(PanelCaja)")){
                     panelHabitats[i].setButtonsVisible(false);
                     panelPrincipal.setVisible(false);
                     panelCaja.setLocation(panelPrincipal.getLocation());
                     System.setProperty("room", "PanelCaja" + i);
                     System.setProperty("habitatSelected", ""+i);
+
+                    // Dibujar pokemon en caja segun habitat
+                    panelCaja.clearPanels();
+                    for (int j = 0; j < 6; j++){
+                        if (panelHabitats[i].habitat.caja[j] != null){
+                            panelCaja.paintPokemon(panelHabitats[i].habitat.caja[j].getSpecies(), j);
+                        }else{
+                            panelCaja.paintEmpty(j);
+                        }
+                    }
                     panelCaja.setVisible(true);
+
                 }else if (event.equals("destroyHabitat")){
                     panelHabitats[i] = null;
                     panelPrincipal.removeHabitat(i);
@@ -187,7 +205,23 @@ public class ConcreteMediator implements Mediator{
                 panelCaja.setVisible(false);
                 panelPrincipal.setLocation(panelCaja.getLocation());
                 System.setProperty("room", "PanelPrincipal");
+                panelCaja.clearPanels();
                 panelPrincipal.setVisible(true);
+            }
+
+            for (int i = 0; i < 6; i++){
+                if (event.equals("deletePokemon"+i)){
+                    int index = Integer.parseInt(System.getProperty("habitatSelected"));
+                    panelHabitats[index].habitat.removePokemon(panelHabitats[index].habitat.caja[i]);
+                    panelCaja.clearPanels();
+                    for (int j = 0; j < 6; j++){
+                        if (panelHabitats[index].habitat.caja[j] != null){
+                            panelCaja.paintPokemon(panelHabitats[index].habitat.caja[j].getSpecies(), j);
+                        }else{
+                            panelCaja.paintEmpty(j);
+                        }
+                    }
+                }
             }
         }
 
@@ -198,15 +232,21 @@ public class ConcreteMediator implements Mediator{
         // Añadir pokemon
         if (sender == panelAddPokemon){
             if (event.equals("pokemonSelect")){
-                // Añadir pokemon al habitat
-                Pokemon pokemon = new Pokemon(specie);
+                for (int i = 0; i < 9; i++){
+                    if (System.getProperty("room").equals("PanelAddPokemon"+i)) {
+                        // Añadir pokemon al habitat
+                        panelHabitats[i].habitat.addPokemon(new Pokemon(specie));
+                        panelHabitats[i].habitat.imprimirCaja();
 
-                // Cambiar sala
-                panelAddPokemon.setVisible(false);
-                panelPrincipal.setLocation(panelAddPokemon.getLocation());
-                System.setProperty("room", "PanelPrincipal");
-                panelAddPokemon.rerrolPokemon();
-                panelPrincipal.setVisible(true);
+                        // Cambiar sala
+                        panelAddPokemon.setVisible(false);
+                        panelPrincipal.setLocation(panelAddPokemon.getLocation());
+                        System.setProperty("room", "PanelPrincipal");
+                        panelAddPokemon.rerrolPokemon();
+                        panelPrincipal.setVisible(true);
+                        break;
+                    }
+                }
             }
         }
     }

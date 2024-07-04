@@ -2,7 +2,7 @@ package org.pokemon;
 
 public class Habitat {
     private Type habitatType;
-    private Pokemon[] caja;
+    public Pokemon[] caja;
     private int pokemonCount;
 
     public Habitat(Type habitatType) {
