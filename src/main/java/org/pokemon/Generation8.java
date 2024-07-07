@@ -3,6 +3,10 @@ package org.pokemon;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Enumeración que representa a la octava generación de Pokémon.
+ * Cada Pokémon tiene nombre, número de Pokédex nacional, dirección de imagen, HP, y tipos.
+ */
 public enum Generation8 {
     GROOKEY("Grookey", "810", "src/main/resources/pokemon/810.png", 50, Type.GRASS),
     THWACKEY("Thwackey", "811", "src/main/resources/pokemon/811.png", 70, Type.GRASS),
@@ -186,33 +190,66 @@ public enum Generation8 {
     ENAMORUS_THERIAN("Enamorus (Therian Form)", "905", "src/main/resources/pokemon/10249.png", 74, Type.FAIRY, Type.FLYING);
 
 
+    /**
+     * La HP base del Pokémon.
+     */
     private final int HP;
+
+    /**
+     * Los tipos del Pokémon.
+     * @see Type
+     */
     private final Type[] TYPE;
-    private final String NAME, NAT_DEX_NUMBER;
+
+    /**
+     * El nombre del Pokémon.
+     */
+    private final String NAME;
+
+    /**
+     * El número de la Pokédex nacional del Pokémon.
+     */
+    private final String NAT_DEX_NUMBER;
+
+    /**
+     * La imagen del Pokémon.
+     */
     private ImageIcon IMG;
 
+
+    /**
+     * Constructor de la enumeración
+     * @param name nombre del Pokémon
+     * @param dexNumber el número de la Pokédex nacional
+     * @param path la dirección de imagen del Pokémon
+     * @param hp estadistica base del Pokémon en HP
+     * @param type tipos del Pokémon
+     */
     Generation8(final String name, final String dexNumber, final String path, final int hp, final Type... type) {
         HP = hp;
         NAT_DEX_NUMBER = dexNumber;
         NAME = name;
         TYPE = type;
         IMG = new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH));
-
     }
 
+    /**
+     * @return numero Pokédex nacional
+     */
     public String getDexNumber()
     {
         return NAT_DEX_NUMBER;
     }
 
+    /**
+     * @return vida (HP) base del Pokémon
+     */
     public int getHP(){
         return HP;
     }
 
     /**
-     * Returns Name of the Pokemon
-     *
-     * @return Name of the Pokemon
+     * @return nombre del Pokémon
      */
     public String getName()
     {
@@ -220,14 +257,16 @@ public enum Generation8 {
     }
 
     /**
-     * Gets the first type of the Pokemon
-     * @return Their first type
+     * @return primer tipo del Pokémon
      */
     public Type[] getType()
     {
         return TYPE;
     }
 
+    /**
+     * @return imagen del Pokémon
+     */
     public ImageIcon getImg(){
         return IMG;
     }

@@ -1,10 +1,12 @@
 package org.pokemon;
 
-import jdk.dynalink.linker.support.TypeUtilities;
-
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Enumeración que representa a la séptima generación de Pokémon.
+ * Cada Pokémon tiene nombre, número de Pokédex nacional, dirección de imagen, HP, y tipos.
+ */
 public enum Generation7 {
     ROWLET("Rowlet", "722", "src/main/resources/pokemon/722.png", 68, Type.GRASS, Type.FLYING),
     DARTRIX("Dartrix", "723", "src/main/resources/pokemon/723.png", 78, Type.GRASS, Type.FLYING),
@@ -128,33 +130,66 @@ public enum Generation7 {
     ULTRA_NECROZMA("Ultra Necrozma", "800", "src/main/resources/pokemon/10157.png", 97, Type.PSYCHIC, Type.DRAGON);
 
 
+    /**
+     * La HP base del Pokémon.
+     */
     private final int HP;
+
+    /**
+     * Los tipos del Pokémon.
+     * @see Type
+     */
     private final Type[] TYPE;
-    private final String NAME, NAT_DEX_NUMBER;
+
+    /**
+     * El nombre del Pokémon.
+     */
+    private final String NAME;
+
+    /**
+     * El número de la Pokédex nacional del Pokémon.
+     */
+    private final String NAT_DEX_NUMBER;
+
+    /**
+     * La imagen del Pokémon.
+     */
     private ImageIcon IMG;
 
+
+    /**
+     * Constructor de la enumeración
+     * @param name nombre del Pokémon
+     * @param dexNumber el número de la Pokédex nacional
+     * @param path la dirección de imagen del Pokémon
+     * @param hp estadistica base del Pokémon en HP
+     * @param type tipos del Pokémon
+     */
     Generation7(final String name, final String dexNumber, final String path, final int hp, final Type... type) {
         HP = hp;
         NAT_DEX_NUMBER = dexNumber;
         NAME = name;
         TYPE = type;
         IMG = new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH));
-
     }
 
+    /**
+     * @return numero Pokédex nacional
+     */
     public String getDexNumber()
     {
         return NAT_DEX_NUMBER;
     }
 
+    /**
+     * @return vida (HP) base del Pokémon
+     */
     public int getHP(){
         return HP;
     }
 
     /**
-     * Returns Name of the Pokemon
-     *
-     * @return Name of the Pokemon
+     * @return nombre del Pokémon
      */
     public String getName()
     {
@@ -162,14 +197,16 @@ public enum Generation7 {
     }
 
     /**
-     * Gets the first type of the Pokemon
-     * @return Their first type
+     * @return primer tipo del Pokémon
      */
     public Type[] getType()
     {
         return TYPE;
     }
 
+    /**
+     * @return imagen del Pokémon
+     */
     public ImageIcon getImg(){
         return IMG;
     }
