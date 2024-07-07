@@ -102,7 +102,7 @@ public enum Generation7 {
     ALOLAN_RAICHU("Alolan Raichu", "026", "src/main/resources/pokemon/10100.png", 60, Type.ELECTRIC, Type.PSYCHIC),
     ALOLAN_SANDSHREW("Alolan Sandshrew", "027", "src/main/resources/pokemon/10101.png", 50, Type.ICE, Type.STEEL),
     ALOLAN_SANDSLASH("Alolan Sandslash", "028", "src/main/resources/pokemon/10102.png", 75, Type.ICE, Type.STEEL),
-    ALOLAN_VULPIX("Alolan Vulpix", "037", "src/main/resources/pokemon/0103.png", 38, Type.ICE, Type.FAIRY),
+    ALOLAN_VULPIX("Alolan Vulpix", "037", "src/main/resources/pokemon/10103.png", 38, Type.ICE, Type.FAIRY),
     ALOLAN_NINETALES("Alolan Ninetales", "038", "src/main/resources/pokemon/10104.png", 73, Type.ICE, Type.FAIRY),
     ALOLAN_DIGLETT("Alolan Diglett", "050", "src/main/resources/pokemon/10105.png", 10, Type.GROUND, Type.STEEL),
     ALOLAN_DUGTRIO("Alolan Dugtrio", "051", "src/main/resources/pokemon/10106.png", 35, Type.GROUND, Type.STEEL),

@@ -162,6 +162,9 @@ public class Pokemon {
                 case 3:
                     state = "hardcore";         // x2 pokemon -> habitat
                     break;
+                default:
+                    state = "nulo";             // x0 habitat -> pokemon
+                    break;
             }
         } else if (state == "deprimido") {      // doble tipo y [x2 habitat -> pokemon] al primero
             switch (estado){
@@ -176,6 +179,9 @@ public class Pokemon {
                     break;
                 case 3:
                     state = "hardcore";         // x2 pokemon -> habitat (sobreescribe)
+                    break;
+                default:
+                    state = "nulo";             // x0 habitat -> pokemon
                     break;
             }
         } else if (state == "normal") {         // doble tipo y [x1 habitat -> pokemon] al primero
@@ -192,10 +198,13 @@ public class Pokemon {
                 case 3:
                     state = "hardcore";         // x2 pokemon -> habitat (sobreescribe)
                     break;
+                default:
+                    state = "nulo";             // x0 habitat -> pokemon
+                    break;
             }
         } else if (state == "feliz") {         // doble tipo y [habitat = pokemon] al primero
             state = "feliz";
-        } else {                               // doble tipo y [x2 pokemon -> habitat] al primero (hardcore)
+        } else if (state == "hardcore") {       // doble tipo y [x2 pokemon -> habitat] al primero
             if (estado == 2) {
                 state = "feliz";            // habitat = pokemon (sobreescribe)
             } else {

@@ -140,6 +140,9 @@ public class Habitat {
                     } else if (pokemonType.isSuperEffectiveAgainst(habitatType)) {
                         pokemon.cambiarEstado(3);
                         System.out.println(pokemon.getName() + " puede destruir este hábitat (" + pokemonType + ") (estado: " + pokemon.getState() + ")");
+                    } else if (habitatType.hasNoEffectOn(pokemonType)) {
+                        pokemon.cambiarEstado(4);
+                        System.out.println("El hábitat no tiene efecto en " + pokemon.getName() + " (" + pokemonType + ") (estado: " + pokemon.getState() + ")");
                     } else {
                         pokemon.cambiarEstado(1);
                         System.out.println("El hábitat es normal para " + pokemon.getName() + " (" + pokemonType + ") (estado: " + pokemon.getState() + ")");
