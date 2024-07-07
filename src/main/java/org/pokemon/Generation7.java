@@ -110,7 +110,7 @@ public enum Generation7 {
     ALOLAN_GRAVELER("Alolan Graveler", "075", "src/main/resources/pokemon/10110.png", 55, Type.ROCK, Type.ELECTRIC),
     ALOLAN_GOLEM("Alolan Golem", "076", "src/main/resources/pokemon/10111.png", 80, Type.ROCK, Type.ELECTRIC),
     ALOLAN_GRIMER("Alolan Grimer", "088", "src/main/resources/pokemon/10112.png", 80, Type.POISON, Type.DARK),
-    ALOLAN_MUK("Alolan Muk", "089", "src/main/resources/pokemon/10113.png", 105, Type.POISON, Type.DARK),
+    ALOLAN_MUK("Alolan Muk", "089", "src/main/resources/pokemon/10103.png", 105, Type.POISON, Type.DARK),
     ALOLAN_EXEGGUTOR("Alolan Exeggutor", "103", "src/main/resources/pokemon/10114.png", 95, Type.GRASS, Type.DRAGON),
     ALOLAN_MAROWAK("Alolan Marowak", "105", "src/main/resources/pokemon/10115.png", 60, Type.FIRE, Type.GHOST),
     ASH_GRENINJA("Ash's Greninja", "658", "src/main/resources/pokemon/10116.png", 72, Type.WATER, Type.DARK),

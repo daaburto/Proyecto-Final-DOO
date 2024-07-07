@@ -55,6 +55,8 @@ public class PanelAddPokemon extends JFrame implements ActionListener {
             JLabel info = new JLabel();
             info.setText(randomPokemonSpecies.getDexNumber() + " - " + randomPokemonSpecies.getName());
 
+            // Tipo pokemon
+
             int index = i;
             panelOpciones.add(new JPanel(new BorderLayout()){
                 {

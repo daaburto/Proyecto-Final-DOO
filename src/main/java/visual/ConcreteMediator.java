@@ -28,7 +28,7 @@ public class ConcreteMediator implements Mediator {
                 for (int j = 0; j < 6; j++) {
                     if (Integer.parseInt(System.getProperty("habitatSelected")) != -1){
                         int index = Integer.parseInt(System.getProperty("habitatSelected"));
-                        if (panelHabitats[index] != null && panelHabitats[index].habitat.caja[j] != null) {
+                        if (panelHabitats[index] != null && panelHabitats[index].habitat.caja[j] != null && panelCaja.hambreLabel[j] != null) {
                             panelCaja.actualizarHambre(panelHabitats[index].habitat.caja[j].getHp(), j);
                             //System.out.println(panelHabitats[index].habitat.caja[j].getHp());
                         }
@@ -243,6 +243,9 @@ public class ConcreteMediator implements Mediator {
                             panelCaja.paintEmpty(j);
                         }
                     }
+                }else if (event.equals("alimentarPokemon"+i)){
+                    int index = Integer.parseInt(System.getProperty("habitatSelected"));
+                    panelHabitats[index].habitat.caja[i].calculateHp();
                 }
             }
         }
@@ -258,6 +261,7 @@ public class ConcreteMediator implements Mediator {
                             // Añadir pokemon al habitat
                             panelHabitats[i].habitat.addPokemon(new Pokemon(specie));
                             panelHabitats[i].habitat.imprimirCaja();
+                            panelHabitats[i].addPokemonPanel(panelHabitats[i].habitat.getFreeBox(), specie);
 
                             // Cambiar sala
                             panelAddPokemon.setVisible(false);

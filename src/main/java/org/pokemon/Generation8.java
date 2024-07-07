@@ -121,7 +121,7 @@ public enum Generation8 {
     GALARIAN_DARMANITAN_ZEN("Galarian Darmanitan (Zen)", "555", "src/main/resources/pokemon/10178.png", 105, Type.ICE),
     GALARIAN_YAMASK("Galarian Yamask", "562", "src/main/resources/pokemon/10179.png", 38, Type.GROUND, Type.GHOST),
     GALARIAN_STUNFISK("Galarian Stunfisk", "618", "src/main/resources/pokemon/10180.png", 109, Type.GROUND, Type.STEEL),
-    TOXTRICITY_LOWKEY("Toxtricity (Low Key Form)", "849", "src/main/resources/pokemon/10181.png", 75, Type.ELECTRIC, Type.POISON),
+    TOXTRICITY_LOWKEY("Toxtricity (Low Key Form)", "849", "src/main/resources/pokemon/10184.png", 75, Type.ELECTRIC, Type.POISON),
     INDEEDEE_MALE("Indeedee (Male)", "876", "src/main/resources/pokemon/876.png", 70, Type.PSYCHIC, Type.NORMAL),
     CROWNED_SWORD_ZACIAN("Zacian (Crowned Sword)", "888", "src/main/resources/pokemon/10188.png", 92, Type.FAIRY, Type.STEEL),
     CROWNED_SHIELD_ZAMAZENTA("Zamazenta (Crowned Shield)", "889", "src/main/resources/pokemon/10189.png", 92, Type.FIGHTING, Type.STEEL),

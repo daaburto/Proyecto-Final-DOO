@@ -1,6 +1,8 @@
 package visual;
 
 import org.pokemon.Habitat;
+import org.pokemon.Pokemon;
+import org.pokemon.Species;
 import org.pokemon.Type;
 
 import javax.swing.*;
@@ -16,6 +18,7 @@ public class PanelHabitat extends JButton implements ActionListener {
     private JButton addPokemonButton;
     private JButton goToBoxButton;
     private JButton destroyHabitatButton;
+    private PokemonPanel[] pokemonPanels = new PokemonPanel[6];
 
     public PanelHabitat(int t) {
         this.setBorder(new LineBorder(new Color(123, 123, 123), 5));
@@ -153,6 +156,15 @@ public class PanelHabitat extends JButton implements ActionListener {
             this.repaint();
             this.revalidate();
         }
+    }
+
+    public void addPokemonPanel(int index ,Species specie){
+        pokemonPanels[index] = new PokemonPanel(specie);
+        this.add(pokemonPanels[index]);
+    }
+    public void removePokemonPanel(int index, Species specie){
+        this.remove(pokemonPanels[index]);
+        pokemonPanels[index] = null;
     }
     public void setMediator(Mediator m){
         mediator = m;

@@ -99,6 +99,15 @@ public class Habitat {
         }
     }
 
+    public int getFreeBox(){
+        for (int i = 0; i < 6; i++){
+            if (caja[i] != null){
+                return i;
+            }
+        }
+        return 0;
+    }
+
 
     public static void main(String[] args) {
         Habitat habitat = new Habitat(Type.FIRE);
