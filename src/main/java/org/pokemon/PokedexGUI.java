@@ -8,7 +8,7 @@ import java.util.Set;
 
 public class PokedexGUI extends JFrame {
 
-    private JLabel numberLabel, nameLabel, typeLabel, weaknessLabel,baseHpLabel, hpLabel, imageLabel, levelLabel;
+    private JLabel numberLabel, nameLabel, typeLabel, weaknessLabel,baseHpLabel, hpLabel, imageLabel, levelLabel, stateLabel;
 
     public PokedexGUI(Pokemon pokemon) {
         setTitle("Pokédex");
@@ -23,6 +23,7 @@ public class PokedexGUI extends JFrame {
         numberLabel = new JLabel("Número: " + pokemon.getSpecies().getDexNumber());
         nameLabel = new JLabel("Nombre: " + pokemon.getName());
         levelLabel = new JLabel("Nivel: " + pokemon.getLevel());
+        stateLabel = new JLabel("Estado: " + pokemon.getState());
         StringBuilder typeText = new StringBuilder("Tipo(s): ");
         for (org.pokemon.Type type : pokemon.getType()) {
             typeText.append("[").append(type).append("] ");
@@ -58,6 +59,7 @@ public class PokedexGUI extends JFrame {
         infoPanel.add(weaknessLabel);
         infoPanel.add(baseHpLabel);
         infoPanel.add(hpLabel);
+        infoPanel.add(stateLabel);
 
 
 

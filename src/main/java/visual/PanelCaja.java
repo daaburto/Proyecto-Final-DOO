@@ -8,6 +8,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class PanelCaja extends JFrame implements ActionListener{
     private Mediator mediator;
@@ -15,7 +17,7 @@ public class PanelCaja extends JFrame implements ActionListener{
     private JPanel[] panelPokemon = new JPanel[6];
     private JButton backButton;
     private pokemonButton[] pokemonButton = new pokemonButton[6];
-    private JLabel hambreLabel;
+    public JButton[] hambreLabel = new JButton[6];
     private JLabel stateLabel;
     private JButton[] alimentarButton = new JButton[6];
     private JButton[] deleteButton = new JButton[6];
@@ -72,7 +74,7 @@ public class PanelCaja extends JFrame implements ActionListener{
     public void setMediator(Mediator m){
         mediator = m;
     }
-    public void paintPokemon(Species specie, int i){
+    public void paintPokemon(Species specie, int i, String state){
         // Pokemon
         pokemonButton[i] = new pokemonButton(specie);
         pokemonButton[i].setIcon(specie.getImg());
@@ -82,8 +84,32 @@ public class PanelCaja extends JFrame implements ActionListener{
         pokemonButton[i].setPreferredSize(new Dimension(180,180));
 
         // Información pokemon
-        JLabel info = new JLabel();
-        info.setText(specie.getDexNumber() + " - " + specie.getName());
+        stateLabel = new JLabel();
+        switch (state){
+            case "feliz":
+                stateLabel.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Estados\\feliz.png"));
+                break;
+            case "deprimido":
+                stateLabel.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Estados\\deprimido.png"));
+                break;
+            case "hardcore":
+                stateLabel.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Estados\\hardcore.png"));
+                break;
+            case "normal":
+                stateLabel.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Estados\\normal.png"));
+                break;
+            default:
+                stateLabel.setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Estados\\normal.png"));
+                break;
+        }
+
+        // hambre Label
+        hambreLabel[i] = new JButton();
+        hambreLabel[i].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_100.png"));
+        hambreLabel[i].setBorderPainted(false);
+        hambreLabel[i].setFocusPainted(false);
+        hambreLabel[i].setContentAreaFilled(false);
+
 
         // alimentarButton
         alimentarButton[i] = new JButton();
@@ -107,9 +133,7 @@ public class PanelCaja extends JFrame implements ActionListener{
 
         // Panel Pokemon
         panelPokemon[i].add(pokemonButton[i], BorderLayout.CENTER);
-        panelPokemon[i].add(info, BorderLayout.SOUTH);
-        info.setBorder(new EmptyBorder(0,0,30,0));
-        info.setHorizontalAlignment(SwingConstants.CENTER);
+        panelPokemon[i].add(stateLabel, BorderLayout.SOUTH);
 
         // Panel botones derecha
         JPanel eastPanel = new JPanel(new GridLayout(2,1));
@@ -117,6 +141,23 @@ public class PanelCaja extends JFrame implements ActionListener{
         panelPokemon[i].add(eastPanel, BorderLayout.EAST);
         eastPanel.add(alimentarButton[i]);
         eastPanel.add(deleteButton[i]);
+
+        // Panel botones abajo
+        JPanel southPhanel = new JPanel(new GridLayout(1,2));
+        southPhanel.setOpaque(false);
+        panelPokemon[i].add(southPhanel, BorderLayout.SOUTH);
+        hambreLabel[i].setHorizontalAlignment(SwingConstants.CENTER);
+        stateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        southPhanel.add(hambreLabel[i]);
+
+        // Panel botones arriba
+        JPanel northpanel = new JPanel();
+        northpanel.setOpaque(false);
+        panelPokemon[i].add(northpanel, BorderLayout.NORTH);
+        northpanel.add(stateLabel);
+        stateLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        stateLabel.setBorder(new EmptyBorder(30,0,0,0));
+
 
         panelOpciones.add(panelPokemon[i]);
 
@@ -144,6 +185,33 @@ public class PanelCaja extends JFrame implements ActionListener{
         panelOpciones.removeAll();
         this.repaint();
         this.revalidate();
+    }
+
+    public void actualizarHambre(int HP, int index){
+        if (HP > 90){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_100.png"));
+        }else if (HP > 80){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_90.png"));
+        }else if (HP > 70){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_80.png"));
+        }else if (HP > 60){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_70.png"));
+        }else if (HP > 50){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_60.png"));
+        }else if (HP > 40){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_50.png"));
+        }else if (HP > 30){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_40.png"));
+        }else if (HP > 20){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_30.png"));
+        }else if (HP > 10){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_20.png"));
+        }else if (HP > 0){
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_10.png"));
+        }else{
+            hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_0.png"));
+        }
+        hambreLabel[index].repaint();
     }
 
     @Override

@@ -4,7 +4,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 public class Pokemon {
     private Species species;
-    private int level, hp;
+    private int level, hp, initial_hp;
     private Timer timer;
     private String state = null;
     public Pokemon(Species s) {
@@ -14,6 +14,7 @@ public class Pokemon {
     public Pokemon(Species species, int lvl) {
         this.species = species;
         this.level = lvl;
+        this.initial_hp = (((28 + (2 * species.getHP()) + (48 / 4) + 100) * level) / 100) + 10;
         calculateHp();
         timer = new Timer(true); // Daemon thread
         timer.scheduleAtFixedRate(new TimerTask() {
@@ -51,7 +52,7 @@ public class Pokemon {
     }
 
     public int getHp() {
-        return hp;
+        return (hp*100)/initial_hp;
     }
     public void reduceHp(int amount) {
         hp = Math.max(hp - amount, 0); //  HP > 0
