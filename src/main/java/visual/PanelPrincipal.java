@@ -5,6 +5,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static visual.Musica.music;
+
 public class PanelPrincipal extends JFrame implements ActionListener{
     private Mediator mediator;
     JButton[] buildButton = new JButton[9];
@@ -48,6 +50,8 @@ public class PanelPrincipal extends JFrame implements ActionListener{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
         this.setVisible(false);
+
+        music.playMusic();
     }
 
     public void buildHabitat(PanelHabitat panelHabitat, int place){
@@ -67,6 +71,7 @@ public class PanelPrincipal extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent event){
+        music.ButtonGeneric();
         if (event.getSource() == buildButton[0]){
             mediator.notify(this, "Room_Goto(PanelEscogerHabitat)[0]");
         }

@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import static visual.Musica.music;
 
 public class PanelAddPokemon extends JFrame implements ActionListener {
     private Mediator mediator;
@@ -142,14 +143,17 @@ public class PanelAddPokemon extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton){
+            music.ButtonGeneric();
             mediator.notify(this, "Room_Goto(PanelPrincipal)");
         }
         for (int i = 0; i < 12; i++){
             if (e.getSource() == pokemonButton[i]){
+                music.ButtonAddPokemon();
                 mediator.notify(this, "pokemonSelect", pokemonButton[i].getSpecie());
             }
         }
         if (e.getSource() == rerollButton){
+            music.ButtonReroll();
             mediator.notify(this, "reroll");
         }
     }
