@@ -1,20 +1,51 @@
 package org.pokemon;
 
+/**
+ * Clase que representa un hábitat para un Pokémon.
+ * @see Pokemon
+ */
 public class Habitat {
+    /**
+     * Tipo del hábitat
+     *
+     * @see Type
+     */
     private Type habitatType;
+
+    /**
+     * Caja donde se almacenan los pokemon del hábitat
+     *
+     * @see Pokemon
+     */
     public Pokemon[] caja;
+
+    /**
+     * Cantidad de pokemon que hay en la caja
+     */
     private int pokemonCount;
 
+    /**
+     * Constructor para un hábitat con un tipo específico.
+     *
+     * @param habitatType El tipo de hábitat para los Pokémon.
+     * @see Type
+     */
     public Habitat(Type habitatType) {
         this.habitatType = habitatType;
-        this.caja = new Pokemon[6];
-        this.pokemonCount = 0;
+        this.caja = new Pokemon[6]; // Capacidad máxima de 6 Pokémon en la caja del hábitat
+        this.pokemonCount = 0; // Inicialmente no hay Pokémon en la caja
     }
 
+    /**
+     * @return El tipo de hábitat.
+     */
     public Type getType() {
         return habitatType;
     }
 
+    /**
+     * Muestra las debilidades del hábitat.
+     */
     public void mostrarDebilidades() {
         Type type = this.getType();
         System.out.println("Debilidades: ");
@@ -25,6 +56,9 @@ public class Habitat {
         }
     }
 
+    /**
+     * Muestra los tipos que son supereficaces contra el hábitat.
+     */
     public void mostrarSupereficaz() {
         Type type = this.getType();
         System.out.println("Supereficaz contra: ");
@@ -35,6 +69,11 @@ public class Habitat {
         }
     }
 
+    /**
+     * Método para añadir un Pokémon a la caja del hábitat.
+     * @param pokemon pokémon a añadir.
+     * @see Pokemon
+     */
     public void addPokemon(Pokemon pokemon) {
         if (pokemonCount < caja.length) {
             caja[pokemonCount] = pokemon;
@@ -45,6 +84,11 @@ public class Habitat {
         }
     }
 
+    /**
+     * Método para eliminar un Pokémon de la caja del hábitat.
+     * @param pokemon pokémon a eliminar.
+     * @see Pokemon
+     */
     public void removePokemon(Pokemon pokemon) {
         for (int i = 0; i < pokemonCount; i++) {
             if (caja[i] == pokemon) {
@@ -65,6 +109,9 @@ public class Habitat {
         System.out.println("Pokémon no encontrado en la caja.");
     }
 
+    /**
+     * Muestra los Pokémon de la caja.
+     */
     public void imprimirCaja() {
         System.out.print("[");
         for (int i = 0; i < pokemonCount; i++) {
@@ -76,6 +123,9 @@ public class Habitat {
         System.out.println("]");
     }
 
+    /**
+     * Método que evalúa la efectividad del hábitat contra los Pokémon en la caja.
+     */
     public void evaluarEfectividad() {
         for (Pokemon pokemon : caja) {
             if (pokemon != null) {
@@ -97,31 +147,5 @@ public class Habitat {
                 }
             }
         }
-    }
-
-
-    public static void main(String[] args) {
-        Habitat habitat = new Habitat(Type.FIRE);
-        System.out.println("El habitat es de tipo: " + habitat.getType());
-        habitat.mostrarDebilidades();
-        habitat.mostrarSupereficaz();
-
-        Pokemon charmander = new Pokemon(Species.CHARMANDER);
-        Pokemon bulbasaur = new Pokemon(Species.BULBASAUR);
-        Pokemon squirtle = new Pokemon(Species.SQUIRTLE);
-        Pokemon pikachu = new Pokemon(Species.PIKACHU);
-
-        habitat.addPokemon(charmander);
-        habitat.addPokemon(bulbasaur);
-        habitat.addPokemon(squirtle);
-        habitat.addPokemon(pikachu);
-        habitat.imprimirCaja();
-        habitat.evaluarEfectividad();
-
-        habitat.removePokemon(bulbasaur);
-        habitat.removePokemon(pikachu);
-        habitat.removePokemon(pikachu);
-        habitat.imprimirCaja();
-        habitat.evaluarEfectividad();
     }
 }

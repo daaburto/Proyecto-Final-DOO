@@ -3,6 +3,10 @@ package org.pokemon;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Enumeración que representa a la novena generación de Pokémon.
+ * Cada Pokémon tiene nombre, número de Pokédex nacional, dirección de imagen, HP, y tipos.
+ */
 public enum Generation9 {
     SPRIGATITO("Sprigatito", "906", "src/main/resources/pokemon/906.png", 40, Type.GRASS),
     FLORAGATO("Floragato", "907", "src/main/resources/pokemon/907.png", 61, Type.GRASS),
@@ -140,33 +144,66 @@ public enum Generation9 {
     PALDEAN_WOOPER("Paldean Wooper", "194", "src/main/resources/pokemon/10253.png", 55, Type.GROUND, Type.POISON);
 
 
+    /**
+     * La HP base del Pokémon.
+     */
     private final int HP;
+
+    /**
+     * Los tipos del Pokémon.
+     * @see Type
+     */
     private final Type[] TYPE;
-    private final String NAME, NAT_DEX_NUMBER;
+
+    /**
+     * El nombre del Pokémon.
+     */
+    private final String NAME;
+
+    /**
+     * El número de la Pokédex nacional del Pokémon.
+     */
+    private final String NAT_DEX_NUMBER;
+
+    /**
+     * La imagen del Pokémon.
+     */
     private ImageIcon IMG;
 
+
+    /**
+     * Constructor de la enumeración
+     * @param name nombre del Pokémon
+     * @param dexNumber el número de la Pokédex nacional
+     * @param path la dirección de imagen del Pokémon
+     * @param hp estadistica base del Pokémon en HP
+     * @param type tipos del Pokémon
+     */
     Generation9(final String name, final String dexNumber, final String path, final int hp, final Type... type) {
         HP = hp;
         NAT_DEX_NUMBER = dexNumber;
         NAME = name;
         TYPE = type;
         IMG = new ImageIcon(new ImageIcon(path).getImage().getScaledInstance(180, 180, Image.SCALE_SMOOTH));
-
     }
 
+    /**
+     * @return numero Pokédex nacional
+     */
     public String getDexNumber()
     {
         return NAT_DEX_NUMBER;
     }
 
+    /**
+     * @return vida (HP) base del Pokémon
+     */
     public int getHP(){
         return HP;
     }
 
     /**
-     * Returns Name of the Pokemon
-     *
-     * @return Name of the Pokemon
+     * @return nombre del Pokémon
      */
     public String getName()
     {
@@ -174,14 +211,16 @@ public enum Generation9 {
     }
 
     /**
-     * Gets the first type of the Pokemon
-     * @return Their first type
+     * @return primer tipo del Pokémon
      */
     public Type[] getType()
     {
         return TYPE;
     }
 
+    /**
+     * @return imagen del Pokémon
+     */
     public ImageIcon getImg(){
         return IMG;
     }

@@ -2,6 +2,19 @@ package org.pokemon;
 
 import javax.swing.*;
 
+/**
+ * Enumeración que representa las diferentes especies de Pokémon.
+ *  @see Generation1
+ *  @see Generation2
+ *  @see Generation3
+ *  @see Generation4
+ *  @see Generation5
+ *  @see Generation6
+ *  @see Generation7
+ *  @see Generation8
+ *  @see Generation9
+ *  @author Daniel Aburto
+ */
 public enum Species {
     BULBASAUR(Generation1.BULBASAUR),
     IVYSAUR(Generation1.IVYSAUR),
@@ -1235,9 +1248,11 @@ public enum Species {
     PALDEAN_TAUROS_AQUA(Generation9.PALDEAN_TAUROS_AQUA),
     PALDEAN_WOOPER(Generation9.PALDEAN_WOOPER);
 
-
+    /**
+     * Constructor para las especies de la primera generación.
+     * @param g especie de la primera generación.
+     */
     Species(Generation1 g) {
-        EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
         NAT_DEX_NUMBER = g.getDexNumber();
@@ -1245,8 +1260,11 @@ public enum Species {
         IMG = g.getImg();
     }
 
+    /**
+     * Constructor para las especies de la segunda generación.
+     * @param g especie de la segunda generación.
+     */
     Species(Generation2 g) {
-        EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
         NAT_DEX_NUMBER = g.getDexNumber();
@@ -1254,8 +1272,11 @@ public enum Species {
         IMG = g.getImg();
     }
 
+    /**
+     * Constructor para las especies de la tercera generación.
+     * @param g especie de la tercera generación.
+     */
     Species(Generation3 g) {
-        EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
         NAT_DEX_NUMBER = g.getDexNumber();
@@ -1263,8 +1284,11 @@ public enum Species {
         IMG = g.getImg();
     }
 
+    /**
+     * Constructor para las especies de la cuarta generación.
+     * @param g especie de la cuarta generación.
+     */
     Species(Generation4 g) {
-        EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
         NAT_DEX_NUMBER = g.getDexNumber();
@@ -1272,8 +1296,11 @@ public enum Species {
         IMG = g.getImg();
     }
 
+    /**
+     * Constructor para las especies de la quinta generación.
+     * @param g especie de la quinta generación.
+     */
     Species(Generation5 g) {
-        EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
         NAT_DEX_NUMBER = g.getDexNumber();
@@ -1281,8 +1308,11 @@ public enum Species {
         IMG = g.getImg();
     }
 
+    /**
+     * Constructor para las especies de la sexta generación.
+     * @param g especie de la sexta generación.
+     */
     Species(Generation6 g) {
-        EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
         NAT_DEX_NUMBER = g.getDexNumber();
@@ -1290,8 +1320,11 @@ public enum Species {
         IMG = g.getImg();
     }
 
+    /**
+     * Constructor para las especies de la séptima generación.
+     * @param g especie de la séptima generación.
+     */
     Species(Generation7 g) {
-        EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
         NAT_DEX_NUMBER = g.getDexNumber();
@@ -1299,8 +1332,11 @@ public enum Species {
         IMG = g.getImg();
     }
 
+    /**
+     * Constructor para las especies de la octava generación.
+     * @param g especie de la octava generación.
+     */
     Species(Generation8 g) {
-        EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
         NAT_DEX_NUMBER = g.getDexNumber();
@@ -1308,8 +1344,11 @@ public enum Species {
         IMG = g.getImg();
     }
 
+    /**
+     * Constructor para las especies de la novena generación.
+     * @param g especie de la novena generación.
+     */
     Species(Generation9 g) {
-        EVOLUTION = null;
         HP = g.getHP();
         NAME = g.getName();
         NAT_DEX_NUMBER = g.getDexNumber();
@@ -1317,36 +1356,65 @@ public enum Species {
         IMG = g.getImg();
     }
 
-    private final Species[] EVOLUTION;
-    private final int HP;
-    private final Type[] TYPE;
-    private final String NAME, NAT_DEX_NUMBER;
-    private ImageIcon IMG;
-    public boolean hasEvolutions() {
-        return EVOLUTION != null;
-    }
 
-    public String getDexNumber()
-    {
+
+    /**
+     * La HP base del Pokémon.
+     */
+    private final int HP;
+
+    /**
+     * Los tipos del Pokémon.
+     */
+    private final Type[] TYPE;
+
+    /**
+     * El nombre del Pokémon.
+     */
+    private final String NAME;
+
+    /**
+     * El número de la Pokédex Nacional del Pokémon.
+     */
+    private final String NAT_DEX_NUMBER;
+
+    /**
+     * La imagen del Pokémon.
+     */
+    private ImageIcon IMG;
+
+    /**
+     * @return número de la Pokédex Nacional del Pokémon.
+     */
+    public String getDexNumber() {
         return NAT_DEX_NUMBER;
     }
 
-
-    public String getName()
-    {
+    /**
+     * @return nombre del Pokémon.
+     */
+    public String getName() {
         return NAME;
     }
 
-    public int getHP(){
+    /**
+     * @return HP base del Pokémon.
+     */
+    public int getHP() {
         return HP;
     }
 
-    public Type[] getType()
-    {
+    /**
+     * @return tipos del Pokémon.
+     */
+    public Type[] getType() {
         return TYPE;
     }
 
-    public ImageIcon getImg(){
+    /**
+     * @return imagen del Pokémon.
+     */
+    public ImageIcon getImg() {
         return IMG;
     }
 }

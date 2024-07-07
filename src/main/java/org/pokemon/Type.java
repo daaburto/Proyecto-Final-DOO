@@ -1,5 +1,8 @@
 package org.pokemon;
 
+/**
+ * Enumeración que define los tipos de Pokémon y sus relaciones de efectividad.
+ */
 public enum Type {
     NORMAL(new String[]{},
             new String[]{"Rock", "Steel"},
@@ -58,6 +61,12 @@ public enum Type {
 
     private final String[] SUPER_EFFECTIVE, NOT_VERY_EFFECTIVE, NO_EFFECT;
 
+    /**
+     * Constructor para inicializar los arrays de tipos de efectividad.
+     * @param superEffective Tipos que reciben daño super efectivo.
+     * @param notVeryEffective Tipos que reciben daño poco efectivo.
+     * @param noEffect Tipos que no reciben daño.
+     */
     Type(String[] superEffective, String[] notVeryEffective, String[] noEffect) {
         SUPER_EFFECTIVE = superEffective;
         NOT_VERY_EFFECTIVE = notVeryEffective;
@@ -82,9 +91,9 @@ public enum Type {
     }
 
     /**
-     * Tells whether or not this Type is Super Effective (x2) against the specified Type
-     * @param t The Type to check
-     * @return True or False
+     * Verifica si este tipo es super efectivo (x2) contra el tipo especificado.
+     * @param t El tipo contra el que se verifica la efectividad.
+     * @return true si es super efectivo, false de lo contrario.
      */
     public boolean isSuperEffectiveAgainst(Type t)
     {
@@ -92,18 +101,18 @@ public enum Type {
     }
 
     /**
-     * Tells whether or not this Type is Not Very Effective (x.5) against the specified Type
-     * @param t The Type to check
-     * @return True or False
+     * Verifica si este tipo es poco efectivo (x0.5) contra el tipo especificado.
+     * @param t El tipo contra el que se verifica la efectividad.
+     * @return true si es poco efectivo, false de lo contrario.
      */
     public boolean isNotVeryEffectiveAgainst(Type t) {
         return contains(NOT_VERY_EFFECTIVE, t);
     }
 
     /**
-     * Tells whether or not this Type has no Effect (x0) against the specified Type
-     * @param t The Type to check
-     * @return True or False
+     * Verifica si este tipo no tiene efecto (x0) contra el tipo especificado.
+     * @param t El tipo contra el que se verifica la efectividad.
+     * @return true si no tiene efecto, false de lo contrario.
      */
     public boolean hasNoEffectOn(Type t)
     {
@@ -111,9 +120,9 @@ public enum Type {
     }
 
     /**
-     * Tells whether or not this Type does normal damage (x1) against the specified Type
-     * @param t The Type to check
-     * @return True or False
+     * Verifica si este tipo causa daño normal (x1) contra el tipo especificado.
+     * @param t El tipo contra el que se verifica la efectividad.
+     * @return true si causa daño normal, false de lo contrario.
      */
     public boolean isNormalAgainst(Type t)
     {
@@ -123,8 +132,8 @@ public enum Type {
     }
 
     /**
-     * Gets all the types that this Type is Super Effective (x2) Against
-     * @return the types that this Type is Super Effective Against
+     * Obtiene todos los tipos contra los que este tipo es super efectivo (x2).
+     * @return Los tipos contra los que es super efectivo este tipo.
      */
     public Type[] getTypesSuperEffectiveAgainst()
     {
@@ -132,8 +141,8 @@ public enum Type {
     }
 
     /**
-     * Gets all the types that this Type is Not Very Effective (x.5) Against
-     * @return the types that this Type is Not Very Effective Against
+     * Obtiene todos los tipos contra los que este tipo es poco efectivo (x0.5).
+     * @return Los tipos contra los que es poco efectivo este tipo.
      */
     public Type[] getTypesNotVeryEffectiveAgainst()
     {
@@ -141,8 +150,8 @@ public enum Type {
     }
 
     /**
-     * Gets all the types that this Type has no Effect (x0) Against
-     * @return the types that this Type has no Effect (x0) Against
+     * Obtiene todos los tipos contra los que este tipo no tiene efecto (x0).
+     * @return Los tipos contra los que no tiene efecto este tipo.
      */
     public Type[] getTypesNoEffectAgainst()
     {
