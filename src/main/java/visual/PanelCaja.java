@@ -7,6 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static visual.Musica.music;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -217,13 +218,16 @@ public class PanelCaja extends JFrame implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton){
+            music.ButtonGeneric();
             mediator.notify(this, "Room_Goto(PanelPrincipal)");
         }
         for (int i = 0; i < 6; i++){
             if (e.getSource() == alimentarButton[i]){
+                music.ButtonAlimentar();
                 mediator.notify(this, "alimentarPokemon"+i);
                 break;
             }else if (e.getSource() == deleteButton[i]){
+                music.ButtonDeletePokemon();
                 mediator.notify(this, "deletePokemon"+i);
                 break;
             }

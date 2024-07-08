@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static visual.Musica.music;
 
 public class PanelEscogerHabitat extends JFrame implements ActionListener {
     private Mediator mediator;
@@ -132,16 +133,20 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton){
+            music.ButtonGeneric();
             mediator.notify(this, "Room_Goto(PanelPrincipal)");
         }
         if (e.getSource() == nextPageButton[0]){
+            music.ButtonGeneric();
             mediator.notify(this,"Room_Goto(NextRoom)");
         }
         if (e.getSource() == nextPageButton[1]){
+            music.ButtonGeneric();
             mediator.notify(this,"Room_Goto(PreviousRoom)");
         }
         for (int i = 0; i < 6; i++){
             if (e.getSource() == habitatButtons[i]){
+                music.ButtonBuild();
                 mediator.notify(this, "habitatSelect = " + habitatButtons[i].getId());
             }
         }

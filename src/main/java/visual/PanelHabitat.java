@@ -10,6 +10,7 @@ import javax.swing.border.LineBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import static visual.Musica.music;
 
 public class PanelHabitat extends JButton implements ActionListener {
     private Mediator mediator;
@@ -180,10 +181,13 @@ public class PanelHabitat extends JButton implements ActionListener {
                 mediator.notify(this, "PanelHabitatHideButtons");
             }
         } else if (e.getSource() == addPokemonButton){
+            music.ButtonGeneric();
             mediator.notify(this, "Room_Goto(PanelAddPokemon)");
         }else if (e.getSource() == goToBoxButton){
+            music.ButtonGeneric();
           mediator.notify(this, "Room_Goto(PanelCaja)");
         }else if(e.getSource() == destroyHabitatButton){
+            music.ButtonDeleteHabitat();
             mediator.notify(this, "destroyHabitat");
         }
     }
