@@ -132,6 +132,7 @@ public class PanelAddPokemon extends JFrame implements ActionListener {
         layeredPane.add(panelOpciones, JLayeredPane.DEFAULT_LAYER);
         layeredPane.add(backButton, JLayeredPane.PALETTE_LAYER);
         layeredPane.add(rerollButton, JLayeredPane.PALETTE_LAYER);
+        this.setIconImage(new ImageIcon("src\\main\\resources\\Interfaz\\AddPokemonButton.png").getImage());
         this.setVisible(false);
     }
 

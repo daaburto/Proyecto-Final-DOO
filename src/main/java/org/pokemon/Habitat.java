@@ -71,6 +71,7 @@ public class Habitat {
 
     /**
      * Método para añadir un Pokémon a la caja del hábitat.
+     *
      * @param pokemon pokémon a añadir.
      * @see Pokemon
      */
@@ -86,6 +87,7 @@ public class Habitat {
 
     /**
      * Método para eliminar un Pokémon de la caja del hábitat.
+     *
      * @param pokemon pokémon a eliminar.
      * @see Pokemon
      */
@@ -101,7 +103,6 @@ public class Habitat {
 
 
                 caja[pokemonCount - 1] = null;
-
 
 
                 pokemonCount--;
@@ -158,38 +159,12 @@ public class Habitat {
     /**
      * Método que verifica la disponibilidad de un espacio en la caja.
      */
-    public int getFreeBox(){
-        for (int i = 0; i < 6; i++){
-            if (caja[i] == null){
+    public int getFreeBox() {
+        for (int i = 0; i < 6; i++) {
+            if (caja[i] == null) {
                 return i - 1;
             }
         }
         return 5;
-    }
-
-
-    public static void main(String[] args) {
-        Habitat habitat = new Habitat(Type.FIRE);
-        System.out.println("El habitat es de tipo: " + habitat.getType());
-        habitat.mostrarDebilidades();
-        habitat.mostrarSupereficaz();
-
-        Pokemon charmander = new Pokemon(Species.CHARMANDER);
-        Pokemon bulbasaur = new Pokemon(Species.BULBASAUR);
-        Pokemon squirtle = new Pokemon(Species.SQUIRTLE);
-        Pokemon pikachu = new Pokemon(Species.PIKACHU);
-
-        habitat.addPokemon(charmander);
-        habitat.addPokemon(bulbasaur);
-        habitat.addPokemon(squirtle);
-        habitat.addPokemon(pikachu);
-        habitat.imprimirCaja();
-        habitat.evaluarEfectividad();
-
-        habitat.removePokemon(bulbasaur);
-        habitat.removePokemon(pikachu);
-        habitat.removePokemon(pikachu);
-        habitat.imprimirCaja();
-        habitat.evaluarEfectividad();
     }
 }

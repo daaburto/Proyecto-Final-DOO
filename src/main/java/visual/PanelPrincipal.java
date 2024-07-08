@@ -71,6 +71,7 @@ public class PanelPrincipal extends JFrame implements ActionListener{
         this.setSize(width,height);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setResizable(false);
+        this.setIconImage(new ImageIcon("src\\main\\resources\\Interfaz\\Icono.png").getImage());
         this.setVisible(false);
 
         music.playMusic();
@@ -108,7 +109,7 @@ public class PanelPrincipal extends JFrame implements ActionListener{
 
     /**
      * Método implementado desde ActionListener, permite recibir el input del mouse
-     * @param e El evento a ser procesado
+     * @param event El evento a ser procesado
      */
     @Override
     public void actionPerformed(ActionEvent event){

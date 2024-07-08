@@ -138,7 +138,7 @@ public enum Generation9 {
     TERAPAGOS_STELLAR("Terapagos (Stellar)", "1024", "src/main/resources/pokemon/10277.png", 160, Type.NORMAL),
     PECHARUNT("Pecharunt", "1025", "src/main/resources/pokemon/1025.png", 88, Type.POISON, Type.GHOST),
     BLOODMOON_URSALUNA("Ursaluna (Bloodmoon)", "901", "src/main/resources/pokemon/10272.png", 113, Type.GROUND, Type.NORMAL),
-    PALDEAN_TAUROS("Tauros", "128", "src/main/resources/pokemon/10250.png", 75, Type.FIGHTING),
+    PALDEAN_TAUROS("Paldean Tauros", "128", "src/main/resources/pokemon/10250.png", 75, Type.FIGHTING),
     PALDEAN_TAUROS_BLAZE("Paldean Tauros (Blaze Breed)", "128", "src/main/resources/pokemon/10251.png", 75, Type.FIGHTING, Type.FIRE),
     PALDEAN_TAUROS_AQUA("Paldean Tauros (Aqua Breed)", "128", "src/main/resources/pokemon/10252.png", 75, Type.FIGHTING, Type.WATER),
     PALDEAN_WOOPER("Paldean Wooper", "194", "src/main/resources/pokemon/10253.png", 55, Type.GROUND, Type.POISON);

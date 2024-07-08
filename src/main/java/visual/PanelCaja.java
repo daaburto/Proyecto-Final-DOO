@@ -105,6 +105,7 @@ public class PanelCaja extends JFrame implements ActionListener{
         backButton.setFocusPainted(false);
         backButton.setOpaque(false);
         backButton.setSize(80, 80);
+        this.setIconImage(new ImageIcon("src\\main\\resources\\Interfaz\\BoxButton.png").getImage());
         backButton.setVisible(true);
 
         this.setSize(1280, 720);

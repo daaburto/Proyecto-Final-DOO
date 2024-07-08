@@ -10,6 +10,7 @@ import java.util.TimerTask;
 public class Pokemon {
     /**
      * Especie del Pokemon
+     *
      * @see Species
      */
     private Species species;
@@ -41,6 +42,7 @@ public class Pokemon {
 
     /**
      * Constructor que crea un Pokémon con una especie específica y el nivel predeterminado de 30.
+     *
      * @param s la especie del Pokémon.
      * @see Species
      */
@@ -51,8 +53,9 @@ public class Pokemon {
     /**
      * Constructor que crea un Pokémon con una especie específica y un nivel determinado.
      * Posee un timer que reduce el HP del pokemon cada segundo
+     *
      * @param species la especie del Pokémon.
-     * @param lvl el nivel del Pokémon.
+     * @param lvl     el nivel del Pokémon.
      * @see Species
      */
     public Pokemon(Species species, int lvl) {
@@ -71,6 +74,7 @@ public class Pokemon {
 
     /**
      * Calcula y establece los puntos de salud (HP) del Pokémon en función de su especie y nivel.
+     *
      * @see <a href="https://bulbapedia.bulbagarden.net/wiki/Stat">...</a>
      */
     public void calculateHp() {
@@ -111,6 +115,7 @@ public class Pokemon {
 
     /**
      * Aumenta el nivel del Pokémon en un valor específico y recalcula su HP.
+     *
      * @param lvl número de niveles a aumentar.
      */
     public void levelUp(int lvl) {
@@ -130,12 +135,13 @@ public class Pokemon {
      * @return hp del Pokémon.
      */
     public int getHp() {
-        return (hp*100)/initial_hp;
+        return (hp * 100) / initial_hp;
     }
 
     /**
      * Reduce el HP del Pokémon en una cantidad específica.
      * Si el HP resultante es menor que cero, se mantiene en cero.
+     *
      * @param amount la cantidad para reducir el HP.
      */
     public void reduceHp(int amount) {
@@ -145,6 +151,7 @@ public class Pokemon {
     /**
      * Cambia el estado del Pokémon según una prioridad de estados.
      * (feliz ← hardcore ← deprimido ← normal)
+     *
      * @param estado el nuevo estado del Pokémon.
      */
     public void cambiarEstado(int estado) {
@@ -167,7 +174,7 @@ public class Pokemon {
                     break;
             }
         } else if (state == "deprimido") {      // doble tipo y [x2 habitat -> pokemon] al primero
-            switch (estado){
+            switch (estado) {
                 case 0:
                     state = "deprimido";        // x4 habitat -> pokemon (muy deprimido)
                     break;
@@ -185,7 +192,7 @@ public class Pokemon {
                     break;
             }
         } else if (state == "normal") {         // doble tipo y [x1 habitat -> pokemon] al primero
-            switch (estado){
+            switch (estado) {
                 case 0:
                     state = "deprimido";        // x2 habitat -> pokemon
                     break;
@@ -218,24 +225,5 @@ public class Pokemon {
      */
     public String getState() {
         return state;
-    }
-
-    public static void main(String[] args) {
-        Pokemon pikachu = new Pokemon(Species.PIKACHU);
-        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
-        pikachu.levelUp();
-        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
-        pikachu.levelUp(5);
-        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
-
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
-        pikachu.calculateHp();
-        System.out.println("Nivel del pokemon: " + pikachu.getLevel() + "   HP actual: " + pikachu.getHp());
     }
 }
