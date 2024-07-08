@@ -6,13 +6,49 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static visual.Musica.music;
 
+/**
+ * Panel para escoger el hábitat que se construirá en el panel principal
+ * @see PanelPrincipal
+ */
 public class PanelEscogerHabitat extends JFrame implements ActionListener {
+    /**
+     * El mediador al cual está conectado
+     * @see ConcreteMediator
+     */
     private Mediator mediator;
+
+    /**
+     * Boton para regresar al panel principal
+     * @see PanelPrincipal
+     */
     private JButton backButton;
+
+    /**
+     * Botones para escoger el hábitat que se construirá
+     * @see habitatButton
+     */
     public habitatButton[] habitatButtons = new habitatButton[6];
+
+    /**
+     * Etiquetas que muestran el tipo del hábitat que se construirá
+     * @see typeLabel
+     */
     private typeLabel[] typeLabels = new typeLabel[9];
+
+    /**
+     * El panel donde se mostrarán los habitats para escoger
+     */
     private JPanel panelOpciones;
+
+    /**
+     * Botón para ir a la siguiente o anterior página de habitats
+     */
     private JButton[] nextPageButton = new JButton[2];
+
+    /**
+     * Constructor del panel para escoger hábitats
+     * Inicia todas las imágenes y botones
+     */
     public PanelEscogerHabitat(){
         super("Escoger habitat");
 
@@ -105,7 +141,11 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
         this.setVisible(false);
     }
 
-
+    /**
+     * Permite al mediador dibujar y esconder lo que se mostrará en pantalla al cambiar la página de hábitats
+     * @see ConcreteMediator
+     * @param destination_page página a la cual se cambiará
+     */
     public void movePage(int destination_page){
         for (int i = 0; i < 6; i++) {
             habitatButtons[i].setId(6 * (destination_page-1) + i);
@@ -126,10 +166,18 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Método para conectar al objeto con el mediador
+     * @param m Mediador al que se conectará
+     */
     public void setMediator(Mediator m){
         mediator = m;
     }
 
+    /**
+     * Método implementado desde ActionListener, permite recibir el input del mouse
+     * @param e El evento a ser procesado
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton){
@@ -154,19 +202,44 @@ public class PanelEscogerHabitat extends JFrame implements ActionListener {
     }
 }
 
+/**
+ * Boton de los habitat que están para la selección
+ * @see PanelEscogerHabitat
+ */
 class habitatButton extends JButton{
+    /**
+     * id del hábitat
+     */
     private int id;
 
+    /**
+     * Constructor del botón del hábitat
+     * @param id id del hábitat
+     */
     habitatButton(int id){
         this.id = id;
     }
 
+    /**
+     * Método para obtener la id del hábitat
+     * @return id del hábitat
+     */
     public int getId(){
         return id;
     }
+
+    /**
+     * Método para darle un valor a la id del hábitat
+     * @param id id del hábitat
+     */
     public void setId(int id){
         this.id = id;
     }
+
+    /**
+     * Le da la imagen al botón según el id del hábitat
+     * @param id id del hábitat
+     */
     public void setIcon(int id){
         switch (id){
             case 0:
@@ -231,20 +304,36 @@ class habitatButton extends JButton{
 
 }
 
+/**
+ * Etiqueta que mostrará el tipo del hábitat
+ * @see habitatButton
+ */
 class typeLabel extends JLabel{
+    /**
+     * id del hábitat
+     */
     private int id;
+
+    /**
+     * Constructor de la etiqueta del tipo de habitat
+     * @param id id del hábitat
+     */
     typeLabel(int id){
         this.id = id;
     }
 
-    public int getId(){
-        return id;
-
-    }
+    /**
+     * Método que permite darle un valor al id
+     * @param i id del hábitat
+     */
     public void setId(int i){
         this.id = i;
     }
 
+    /**
+     * Método que le da la imágen a la etiqueta según el id del hábitat
+     * @param id id del hábitat
+     */
     public void setIcon(int id){
         switch (id){
             case 0:

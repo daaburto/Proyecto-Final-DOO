@@ -7,10 +7,32 @@ import java.awt.event.ActionListener;
 
 import static visual.Musica.music;
 
+/**
+ * Panel principal de la interfáz gráfica, aqui se encuentran los hábitats
+ * @see PanelHabitat
+ */
 public class PanelPrincipal extends JFrame implements ActionListener{
+    /**
+     * El mediador al cual está conectado
+     * @see ConcreteMediator
+     */
     private Mediator mediator;
+
+    /**
+     * Botones que permiten construir un hábitat, llevan al panel para construir habitats
+     * @see PanelEscogerHabitat
+     */
     JButton[] buildButton = new JButton[9];
+
+    /**
+     * Paneles donde se encuentran los botones y hábitats
+     */
     JPanel[] zonaHabitat = new JPanel[9];
+
+    /**
+     * Constructor del panel principal
+     * Se inician todas las imágenes y botones
+     */
     public PanelPrincipal(){
         super("Panel Principal");
         int width = 1280;
@@ -54,21 +76,40 @@ public class PanelPrincipal extends JFrame implements ActionListener{
         music.playMusic();
     }
 
+    /**
+     * Método que permite al mediador construir un hábitat
+     * @see ConcreteMediator
+     * @param panelHabitat El panel hábitat que se construirá
+     * @param place El lugar donde se contruirá
+     */
     public void buildHabitat(PanelHabitat panelHabitat, int place){
         zonaHabitat[place].remove(buildButton[place]);
         zonaHabitat[place].add(panelHabitat);
         panelHabitat.setMediator(mediator);
     }
+
+    /**
+     * Método que permite al mediador remover un hábitat
+     * @param place El lugar donde se removerá el hábitat
+     */
     public void removeHabitat(int place){
         zonaHabitat[place].removeAll();
         zonaHabitat[place].add(buildButton[place]);
         this.repaint();
     }
 
+    /**
+     * Método para conectar al objeto con el mediador
+     * @param m Mediador al que se conectará
+     */
     public void setMediator(Mediator m){
         mediator = m;
     }
 
+    /**
+     * Método implementado desde ActionListener, permite recibir el input del mouse
+     * @param e El evento a ser procesado
+     */
     @Override
     public void actionPerformed(ActionEvent event){
         music.ButtonGeneric();

@@ -11,13 +11,44 @@ import java.awt.event.ActionListener;
 import java.util.Random;
 import static visual.Musica.music;
 
+/**
+ * Panel donde se añaden los pokémon al hábitat
+ * @see PanelHabitat
+ * @see Pokemon
+ */
 public class PanelAddPokemon extends JFrame implements ActionListener {
+    /**
+     * El mediador al cual está conectado
+     * @see ConcreteMediator
+     */
     private Mediator mediator;
+
+    /**
+     * Panel donde se muestra las opciones a escoger de los pokemon
+     */
     private JPanel panelOpciones;
+
+    /**
+     * Botones para añadir pokemon y crear pokemon
+     * @see pokemonButton
+     */
     private pokemonButton[] pokemonButton = new pokemonButton[12];
+
+    /**
+     * Botón para regresar al panel principal
+     * @see PanelPrincipal
+     */
     private JButton backButton;
+
+    /**
+     * Botón para cambiar la elección de pokemon en pantalla
+     */
     private JButton rerollButton;
 
+    /**
+     *  Constructor del panel para añadir pokemon
+     *  Se inician y dibujan todos los botones y paneles
+     */
     public PanelAddPokemon() {
         super("Añadir Pokemon");
 
@@ -104,6 +135,9 @@ public class PanelAddPokemon extends JFrame implements ActionListener {
         this.setVisible(false);
     }
 
+    /**
+     * Método que permite volver a dibujar los pokemon en pantalla al presionar el botón de rerrol
+     */
     public void rerrolPokemon(){
         panelOpciones.setVisible(false);
         panelOpciones.removeAll();
@@ -136,10 +170,18 @@ public class PanelAddPokemon extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Método para conectar al objeto con el mediador
+     * @param m Mediador al que se conectará
+     */
     public void setMediator(Mediator m){
         mediator = m;
     }
 
+    /**
+     * Método implementado desde ActionListener, permite recibir el input del mouse
+     * @param e El evento a ser procesado
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton){

@@ -9,13 +9,53 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Mediador concreto que llevará a cabo las tareas entre los paneles
+ * Aqui se crean todos los paneles y llegan todos los eventos, para así lograr esta conexión
+ * Para la llegada de los eventos, se implementa Mediator
+ * @see Mediator
+ */
 public class ConcreteMediator implements Mediator {
+    /**
+     * Panel principal de la parte gráfica
+     * @see PanelPrincipal
+     */
     private PanelPrincipal panelPrincipal;
+
+    /**
+     * Panel donde se escogen los habitats
+     * @see PanelHabitat
+     */
     private PanelEscogerHabitat panelEscogerHabitat;
+
+    /**
+     * Panel donde se añaden los pokemon
+     * @see PanelAddPokemon
+     */
     private PanelAddPokemon panelAddPokemon;
+
+    /**
+     * Panel donde se encuentran los pokemon que están en tu habitat
+     * @see PanelCaja
+     */
     private PanelCaja panelCaja;
+
+    /**
+     * Paneles de habitats que se encuentran construidos en el panel principal
+     * @see PanelHabitat
+     */
     private PanelHabitat[] panelHabitats = new PanelHabitat[9];
 
+    /**
+     * Constructor del mediador que inicializa todos los paneles
+     * El Timer "timer" actualiza la barra de hambre y mueve a los pokemon en el habitat
+     * El Timer "timerMov" permite iniciar el movimiento de cada pokemon por habitat
+     * @see PokemonPanel
+     * @param panelPrincipal El panel principal
+     * @param panelEscogerHabitat el panel para escoger habitats
+     * @param panelAddPokemon el panel para añadir pokemon
+     * @param panelCaja el panel de la caja de tus habitats
+     */
     public ConcreteMediator(PanelPrincipal panelPrincipal, PanelEscogerHabitat panelEscogerHabitat, PanelAddPokemon panelAddPokemon, PanelCaja panelCaja) {
         this.panelPrincipal = panelPrincipal;
         this.panelEscogerHabitat = panelEscogerHabitat;
@@ -74,7 +114,12 @@ public class ConcreteMediator implements Mediator {
         }, 0, 10000);// period = 10000
     }
 
-
+    /**
+     * Método que se implementa desde Mediator, maneja los eventos entre los paneles
+     * @see Mediator
+     * @param sender Es el objeto que está enviando el mensaje
+     * @param event Es el evento que se manejará
+     */
     @Override
     public void notify(Component sender, String event) {
         // Panel Principal
@@ -287,6 +332,14 @@ public class ConcreteMediator implements Mediator {
         }
     }
 
+    /**
+     *  Método implementado desde Mediator que también maneja los eventos, pero permite usar la especie de un pokemon en concreto
+     * @see Mediator
+     * @see Species
+     * @param sender Es el objeto que está enviando el mensaje
+     * @param event Es el evento que se manejará
+     * @param specie
+     */
         @Override
         public void notify(Component sender, String event, Species specie){
             // Añadir pokemon

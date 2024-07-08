@@ -13,15 +13,60 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class PanelCaja extends JFrame implements ActionListener{
+    /**
+     * El mediador al cual está conectado
+     * @see ConcreteMediator
+     */
     private Mediator mediator;
+
+    /**
+     * Panel donde se mostrarán tus pokemon en la caja
+     */
     private JPanel panelOpciones;
+
+    /**
+     * Paneles de los pokemon y toda su información en la caja
+     */
     private JPanel[] panelPokemon = new JPanel[6];
+
+    /**
+     * Botón para regresar al panel principal
+     * @see PanelPrincipal
+     */
     private JButton backButton;
+
+    /**
+     * Pokemon que se mostrarán en pantalla
+     * @see pokemonButton
+     */
     private pokemonButton[] pokemonButton = new pokemonButton[6];
+
+    /**
+     * Barra de hambre de cada pokemon en la caja
+     */
     public JButton[] hambreLabel = new JButton[6];
+
+    /**
+     * Imagen que mostrará el estado de los pokemon según su habitat
+     * @see org.pokemon.Pokemon
+     */
     private JLabel stateLabel;
+
+    /**
+     * Botón que permite alimentar y llenar la barra de hambre del pokemon
+     */
     private JButton[] alimentarButton = new JButton[6];
+
+    /**
+     * Botón que permite eliminar a un pokemon de la caja y hábitat
+     * @see PanelHabitat
+     */
     private JButton[] deleteButton = new JButton[6];
+
+    /**
+     * Constructor del panel caja
+     * Se inician todos los botones y paneles según el habitat seleccionado
+     */
     public PanelCaja() {
         super("Caja");
 
@@ -72,9 +117,21 @@ public class PanelCaja extends JFrame implements ActionListener{
         this.setVisible(false);
     }
 
+    /**
+     * Método para conectar al objeto con el mediador
+     * @param m Mediador al que se conectará
+     */
     public void setMediator(Mediator m){
         mediator = m;
     }
+
+    /**
+     * Este método permite al mediador dibujar los pokemon en la caja según el hábitat seleccionado
+     * @see ConcreteMediator
+     * @param specie Especie del pokemon, para así conocer su imagen
+     * @param i Índice del panel del pokemon que se dibujará en la pantalla
+     * @param state Estado de ánimo del pokemon
+     */
     public void paintPokemon(Species specie, int i, String state){
         // Pokemon
         pokemonButton[i] = new pokemonButton(specie);
@@ -167,6 +224,11 @@ public class PanelCaja extends JFrame implements ActionListener{
 
     }
 
+    /**
+     * Este método permite al mediador dibujar un panel vacío si no hay ningún pokemon
+     * @see ConcreteMediator
+     * @param i Índice del panel donde se dibujará
+     */
     public void paintEmpty(int i){
         // Panel Pokemon
         panelPokemon[i] = new JPanel(new BorderLayout());
@@ -176,6 +238,10 @@ public class PanelCaja extends JFrame implements ActionListener{
         this.revalidate();
     }
 
+    /**
+     * Este método permite al mediador limpiar los paneles creados, para así poder dibujar desde cero al cambiar de hábitat
+     * @see ConcreteMediator
+     */
     public void clearPanels(){
         for (int i = 0; i < 6 ; i++){
             pokemonButton[i] = null;
@@ -188,6 +254,13 @@ public class PanelCaja extends JFrame implements ActionListener{
         this.revalidate();
     }
 
+    /**
+     * Este método permite al mediador dibujar y actualizar la barra de hambre según el HP de cada pokemon
+     * @see ConcreteMediator
+     * @see org.pokemon.Pokemon
+     * @param HP HP o hambre del pokemon
+     * @param index Índice de la barra que se está dibujando
+     */
     public void actualizarHambre(int HP, int index){
         if (HP > 90){
             hambreLabel[index].setIcon(new ImageIcon("src\\main\\resources\\Interfaz\\Hambre\\hambre_100.png"));
@@ -215,6 +288,10 @@ public class PanelCaja extends JFrame implements ActionListener{
         hambreLabel[index].repaint();
     }
 
+    /**
+     * Método implementado desde ActionListener, permite recibir el input del mouse
+     * @param e El evento a ser procesado
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == backButton){

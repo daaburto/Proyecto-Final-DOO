@@ -8,12 +8,42 @@ import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
+/**
+ * Panel de pokémon que se dibujarán en los hábitats, permite mostrarlos en pantalla y su movimiento
+ * @see PanelHabitat
+ */
 public class PokemonPanel extends JLabel{
+    /**
+     * Límites para evitar que al moverse salgan de pantalla
+     */
     private int[] bounds = new int[4];
+
+    /**
+     * Coordenada x al cual se dirigirá al moverse
+     */
     public int new_x;
+
+    /**
+     * Coordenanda y al cual se dirigirá al moverse
+     */
     public int new_y;
+
+    /**
+     * Variable booleana que permite saber al mediador si el pokémon se está moviendo o no
+     * @see ConcreteMediator
+     */
     public boolean moving;
-    Random random;
+
+    /**
+     * Variable para establecer un punto de partida aleatorio en el hábitat
+     */
+    private Random random;
+
+    /**
+     * Constructor del panel pokémon, lo crea en el panel hábitat
+     * @see PanelHabitat
+     * @param specie Especie del pokémon que se creará, permite obtener la imágen
+     */
     public PokemonPanel(Species specie){
         moving = false;
         new_x = 0;
@@ -30,6 +60,11 @@ public class PokemonPanel extends JLabel{
         this.setLocation(bounds[0] + random.nextInt(bounds[1]), bounds[2] + random.nextInt(bounds[3]));
         this.setVisible(true);
     }
+
+    /**
+     * Método que permite al mediador mover la posición del pokémon si la variable moving es verdadera
+     * @see ConcreteMediator
+     */
     public void movePos(){
         int delta_x = 1;
         int delta_y = 1;
