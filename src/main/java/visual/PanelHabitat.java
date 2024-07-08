@@ -58,11 +58,18 @@ public class PanelHabitat extends JButton implements ActionListener {
     public PokemonPanel[] pokemonPanels = new PokemonPanel[6];
 
     /**
+     * Contador de la cantidad de pokémon que hay en el hábitat
+     */
+    private int pokemonCount;
+
+    /**
      * Constructor del panel del hábitat
      * Se inician todas las imágenes y botones, además se construye el objeto hábitat
      * @param t Entero para el tipo del hábitat
      */
     public PanelHabitat(int t) {
+        pokemonCount = 0;
+
         this.setBorder(new LineBorder(new Color(123, 123, 123), 5));
 
         // Crear Botones
@@ -219,6 +226,7 @@ public class PanelHabitat extends JButton implements ActionListener {
      */
     public void addPokemonPanel(int index ,Species specie){
         pokemonPanels[index] = new PokemonPanel(specie);
+        pokemonCount += 1;
         this.add(pokemonPanels[index]);
     }
 
@@ -230,6 +238,13 @@ public class PanelHabitat extends JButton implements ActionListener {
     public void removePokemonPanel(int index){
         this.remove(pokemonPanels[index]);
         pokemonPanels[index] = null;
+        for (int j = index; j < pokemonCount - 1; j++) {
+            pokemonPanels[j] = pokemonPanels[j + 1];
+        }
+
+        pokemonPanels[pokemonCount - 1] = null;
+
+        pokemonCount -= 1;
         this.repaint();
     }
 
@@ -254,8 +269,13 @@ public class PanelHabitat extends JButton implements ActionListener {
                 mediator.notify(this, "PanelHabitatHideButtons");
             }
         } else if (e.getSource() == addPokemonButton){
+            if (pokemonPanels[5] == null){
             music.ButtonGeneric();
             mediator.notify(this, "Room_Goto(PanelAddPokemon)");
+            }else {
+                music.ButtonFullBox();
+            }
+
         }else if (e.getSource() == goToBoxButton){
             music.ButtonGeneric();
           mediator.notify(this, "Room_Goto(PanelCaja)");

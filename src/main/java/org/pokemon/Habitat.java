@@ -95,14 +95,17 @@ public class Habitat {
                 System.out.println(caja[i].getName() + " ha sido eliminado de la caja.");
                 caja[i] = null;
 
-
                 for (int j = i; j < pokemonCount - 1; j++) {
                     caja[j] = caja[j + 1];
                 }
 
 
                 caja[pokemonCount - 1] = null;
+
+
+
                 pokemonCount--;
+
                 return;
             }
         }
@@ -161,7 +164,7 @@ public class Habitat {
                 return i - 1;
             }
         }
-        return 0;
+        return 5;
     }
 
 

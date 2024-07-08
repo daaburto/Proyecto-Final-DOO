@@ -137,4 +137,19 @@ public class Musica {
             e.printStackTrace();
         }
     }
+
+    /**
+     * Reproduce un sonido al apretar el botón de añadir pokémon y la caja está llena
+     */
+    public void ButtonFullBox(){
+        try {
+            File musicPath = new File("src/main/resources/Interfaz/Musica/full_box.wav");
+            AudioInputStream audioInput = AudioSystem.getAudioInputStream(musicPath);
+            clip = AudioSystem.getClip();
+            clip.open(audioInput);
+            clip.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

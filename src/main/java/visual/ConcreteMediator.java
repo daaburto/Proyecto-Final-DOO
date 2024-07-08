@@ -84,7 +84,13 @@ public class ConcreteMediator implements Mediator {
                     if (panelHabitats[i] != null){
                         for (int j = 0; j < 6; j++){
                             if (panelHabitats[i].pokemonPanels[j] != null && panelHabitats[i].pokemonPanels[j].moving){
-                                panelHabitats[i].pokemonPanels[j].movePos();
+                                if(panelHabitats[i].habitat.caja[j].getHp() != 0){
+                                    panelHabitats[i].pokemonPanels[j].movePos();
+                                    panelHabitats[i].pokemonPanels[j].setHungryIcon(false);
+                                }else{
+                                    panelHabitats[i].pokemonPanels[j].setHungryIcon(true);
+                                }
+
                             }
                         }
                     }
