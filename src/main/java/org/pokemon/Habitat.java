@@ -154,8 +154,8 @@ public class Habitat {
      */
     public int getFreeBox(){
         for (int i = 0; i < 6; i++){
-            if (caja[i] != null){
-                return i;
+            if (caja[i] == null){
+                return i - 1;
             }
         }
         return 0;

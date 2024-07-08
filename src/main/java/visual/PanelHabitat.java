@@ -18,7 +18,7 @@ public class PanelHabitat extends JButton implements ActionListener {
     private JButton addPokemonButton;
     private JButton goToBoxButton;
     private JButton destroyHabitatButton;
-    private PokemonPanel[] pokemonPanels = new PokemonPanel[6];
+    public PokemonPanel[] pokemonPanels = new PokemonPanel[6];
 
     public PanelHabitat(int t) {
         this.setBorder(new LineBorder(new Color(123, 123, 123), 5));
@@ -162,9 +162,10 @@ public class PanelHabitat extends JButton implements ActionListener {
         pokemonPanels[index] = new PokemonPanel(specie);
         this.add(pokemonPanels[index]);
     }
-    public void removePokemonPanel(int index, Species specie){
+    public void removePokemonPanel(int index){
         this.remove(pokemonPanels[index]);
         pokemonPanels[index] = null;
+        this.repaint();
     }
     public void setMediator(Mediator m){
         mediator = m;

@@ -5,6 +5,7 @@ import org.pokemon.Species;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -21,22 +22,56 @@ public class ConcreteMediator implements Mediator {
         this.panelAddPokemon = panelAddPokemon;
         this.panelCaja = panelCaja;
         System.setProperty("habitatSelected", "-1");
+
+
         Timer timer = new Timer(true); // Daemon thread
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
+                // Vida hambre pokemon
                 for (int j = 0; j < 6; j++) {
                     if (Integer.parseInt(System.getProperty("habitatSelected")) != -1){
                         int index = Integer.parseInt(System.getProperty("habitatSelected"));
                         if (panelHabitats[index] != null && panelHabitats[index].habitat.caja[j] != null && panelCaja.hambreLabel[j] != null) {
                             panelCaja.actualizarHambre(panelHabitats[index].habitat.caja[j].getHp(), j);
-                            //System.out.println(panelHabitats[index].habitat.caja[j].getHp());
                         }
                     }
 
                 }
+
+                // Movimiento pokemon
+                for (int i = 0; i < 9; i++){
+                    if (panelHabitats[i] != null){
+                        for (int j = 0; j < 6; j++){
+                            if (panelHabitats[i].pokemonPanels[j] != null && panelHabitats[i].pokemonPanels[j].moving){
+                                panelHabitats[i].pokemonPanels[j].movePos();
+                            }
+                        }
+                    }
+                }
             }
-        }, 0, 1000);
+        }, 0, 100);
+
+        // Timer Movimiento pokemon
+        Timer timerMov = new Timer(true); // Daemon thread
+        timerMov.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                for (int i = 0; i < 9; i++){
+                    if (panelHabitats[i] != null){
+                        for (int j = 0; j < 6; j++){
+                            if (panelHabitats[i].pokemonPanels[j] != null && !panelHabitats[i].pokemonPanels[j].moving){
+                                Random random_x = new Random();
+                                Random random_y = new Random();
+                                panelHabitats[i].pokemonPanels[j].moving = true;
+                                panelHabitats[i].pokemonPanels[j].new_x = random_x.nextInt(350);
+                                panelHabitats[i].pokemonPanels[j].new_y = random_y.nextInt(150);
+                            }
+                        }
+                    }
+                }
+            }
+        }, 0, 10000);// period = 10000
     }
 
 
@@ -234,6 +269,7 @@ public class ConcreteMediator implements Mediator {
                 if (event.equals("deletePokemon" + i)) {
                     int index = Integer.parseInt(System.getProperty("habitatSelected"));
                     panelHabitats[index].habitat.removePokemon(panelHabitats[index].habitat.caja[i]);
+                    panelHabitats[index].removePokemonPanel(i);
                     panelCaja.clearPanels();
                     for (int j = 0; j < 6; j++) {
                         if (panelHabitats[index].habitat.caja[j] != null) {
